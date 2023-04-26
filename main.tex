@@ -1,0 +1,276 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1cm]{geometry}
+\geometry{a3paper}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{xcolor}
+
+% No Indent 
+\setlength\parindent{0pt}
+% Line Spacing to 1 
+\renewcommand{\baselinestretch}{1.0}
+% Remove line spacing before and after sections 
+\usepackage{titlesec}
+% \titlespacing\section{0pt}{0pt plus 0pt minus 0pt}{0pt plus 0pt minus 0pt}
+% \titlespacing\subsection{0pt}{0pt plus 0pt minus 0pt}{0pt plus 0pt minus 0pt}
+% \titlespacing\subsubsection{0pt}{0pt plus 0pt minus 0pt}{0pt plus 0pt minus 0pt}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\AtBeginEnvironment{equation*}
+{\setlength{\abovedisplayskip}{3pt}\setlength{\belowdisplayskip}{3pt}\color{purple}}
+\AtBeginEnvironment{gather*}
+{\setlength{\abovedisplayskip}{3pt}\setlength{\belowdisplayskip}{3pt}\color{purple}}
+\AtBeginEnvironment{align*}
+{\setlength{\abovedisplayskip}{3pt}\setlength{\belowdisplayskip}{3pt}\color{purple}}
+
+
+% remove space before multicol 
+
+\setlength{\multicolsep}{0pt}
+
+% reduce list spacing
+\usepackage{enumitem}
+\setlist{nosep}
+
+% Colors
+
+
+% Color tweaks
+
+\newcommand{\marker}[1]{{\color{magenta}{\textbf{#1}}}}
+
+% set section color to violet 
+\let\oldsection\section
+\renewcommand{\section}[1]{\oldsection{\color{violet}{#1}}}
+\renewcommand{\thesection}{\color{violet}{\arabic{section}}}
+
+\let\oldsubsection\subsection
+\renewcommand{\subsection}[1]{\oldsubsection{\color{purple}{#1}}}
+\renewcommand{\thesubsection}{\color{purple}{\arabic{section}.\arabic{subsection}}}
+
+% Change color of equation to blue 
+\let\oldinlinemathstart\(
+\renewcommand{\(}{\begingroup\color{purple}\oldinlinemathstart}
+\let\oldinlinemathend\)
+\renewcommand{\)}{\oldinlinemathend\endgroup}
+
+
+\begin{document}
+\begin{center}
+\LARGE ST2131 Finals Cheatsheet by Wang Xiuxuan
+\end{center}
+\begin{multicols*}{3}
+\section{Chapter 1}
+% TODO
+\section{Chapter 2}
+% TODO
+\section{Chapter 3}
+% TODO
+\section{Chapter 4}
+\subsection{Random Variables}
+\marker{Definition 4.1}: A \textbf{random variable}, \(X\), is a mapping from the
+sample space to real numbers.
+\subsection{Discrete Random Variables}
+
+\marker{Definition 4.2}: A random variable is said to be \textbf{discrete} if 
+range of \(X\) is either \textbf{fininite} or \textbf{countably infinite}.
+
+\marker{Definition 4.3}: The \textbf{probability mass function} (pmf) of a
+discrete random variable \(X\) is defined by
+\begin{equation*}
+p_X(x) = \begin{cases}P(X=x), & \text{if }x = x_1, x_2, \cdots \\ 0, & 
+\text{otherwise}.\end{cases}
+\end{equation*}
+Note that \(\sum\limits_{i=1}^{\infty}p_X(x_i) = 1.\)
+
+\marker{Definition 4.4}: The \textbf{cumulative distribution function} (cdf) of
+a discrete random variable \(X\) is defined as 
+\(F_X:\mathbb{R}\rightarrow \mathbb{R}T\) where \(F_X(x) = P(X\leq x)\), for 
+\(x\in \mathbb{R}.\)
+
+\subsection{Expected Value}
+
+\marker{Definition 4.5}: If \(X\) is a discrete random variable having a 
+probability mass function \(p_X\), the \textbf{expectation} or \textbf{expected 
+value} of \(X\) is defined by 
+\begin{equation*}
+  E(X) = \sum\limits_{x}xp_X(x).
+\end{equation*}
+
+\marker{Tail Sum Formula}: For \textbf{nonnegative integer-valued} random 
+variable \(X\), we have 
+\begin{equation*}
+E(X) = \sum\limits_{k=1}^{\infty}P(X \geq k) = 
+\sum\limits_{k=0}^{\infty}P(X > k).
+\end{equation*}
+
+\subsection{Expectation of a Function of a Random Variable}
+
+\marker{Proposition 4.1} If \(X\) is a \textbf{discrete random variable} that 
+takes values \(x_i\), \(i \geq 1\), with respective probabilities \(p_X(x_i)\), 
+then for any real value function \(g\), 
+\begin{align*}
+  E[g(X)] &= \sum_i g(x_i)p_X(x_i) \quad \text{or equivalently}\\
+          &= \sum_x g(x)p_X(x).
+\end{align*}
+
+\marker{Corollary 4.2} Let \(a\) and \(b\) be constants, then 
+\begin{equation*}
+E[aX + b] = aE(X)+ b.
+\end{equation*}
+
+\subsection{Variance and Standard Deviation}
+
+\marker{Definition 4.6} If \(X\) is a random variable with mean \(\mu\), then the 
+\textbf{variance} of \(X\), denoted by \(\operatorname{Var}\left(X\right)\), is 
+defined by 
+\begin{equation*}
+  \operatorname{Var}\left(X\right)=E[(X-\mu)^2].
+\end{equation*}
+
+\marker{Definition 4.7} The \textbf{standard deviation} of \(X\), denoted by 
+\(\sigma_X\) or \(\operatorname{SD}\left(X\right)\), is defined by
+\begin{equation*}
+\sigma_X = \sqrt{\operatorname{Var}\left(X\right)}.
+\end{equation*}
+
+\marker{Scaling and shifting}: 
+\begin{itemize}
+  \item \(\operatorname{Var}\left(aX+b\right)=a^2\operatorname{Var}
+    \left(X\right).\)
+  \item \(\operatorname{SD}\left(aX+b\right)=|a|\operatorname{SD}
+    \left(X\right).\)
+\end{itemize}
+
+
+\subsection{Discrete Random Variables Arising from Repeated Trials}
+
+\marker{Bernoulli Random Variable}: \(\operatorname{Be}\left(p\right)\), define 
+\begin{equation*}
+  X = \begin{cases}1, &\text{if it is a success};\\ 
+  0 &\text{if it is a failure.}\end{cases}
+\end{equation*}
+\begin{multicols}{2}
+\begin{itemize}
+\item \(P(X=1) = p\); 
+\item \(P(X=0) = 1-p\);
+\item \(E(X) = p\);
+\item \(\operatorname{Var}\left(X\right)=p(1-p)\).
+\end{itemize} 
+\end{multicols}
+
+\marker{Binomial Random Variable}: \(\operatorname{Bin}\left(n,p\right)\), define
+\(X\) as \textbf{number of successes} in \(n\)
+\(\operatorname{Bernoulli}\left(p\right)\) trials.
+
+Therefore, \(X\) takes values \(0, 1, 2, \cdots, n\). 
+\begin{itemize}
+  \item \(P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}\);
+\end{itemize}
+\begin{multicols}{2}
+\begin{itemize}
+  \item \(E(X)=np\);
+  \item \(\operatorname{Var}\left(X\right)=np(1-p)\);
+\end{itemize}
+\end{multicols}
+
+\marker{Geometric Random Variable}: \(\operatorname{Geom}\left(p\right)\), 
+define \(X\) as \textbf{number of trials} until the first success in a 
+sequence of independent \(\operatorname{Bernoulli}\left(p\right)\) trials.
+\begin{itemize}
+  \item \(P(X=k) = pq^{k-1}\);
+\end{itemize}
+\begin{multicols}{2}
+\begin{itemize}
+  \item \(E(X)=\dfrac{1}{p}\);
+  \item \(\operatorname{Var}\left(X\right)=\dfrac{1 - p}{p^2}\);
+\end{itemize}
+\end{multicols}
+
+\marker{Alternative Geometric Distribution}: Let \(X'\) be the 
+\textbf{number of failures} in the \(\operatorname{Bernoulli}\left(p\right)\)
+trials in order to obtain the first success. Here, 
+\begin{equation*}
+  X = X' + 1
+\end{equation*}
+\begin{itemize}
+  \item \(P(X'=k) = pq^{k}\);
+\end{itemize}
+\begin{multicols}{2}
+\begin{itemize}
+  \item \(E(X')=\dfrac{1-p}{p}\);
+  \item \(\operatorname{Var}\left(X'\right)=\dfrac{1 - p}{p^2}\);
+\end{itemize}
+\end{multicols}
+
+\marker{Negative Binomial Random Variable}: \(\operatorname{NB}
+\left(r,p\right)\), define \(X\) to be \textbf{number of
+\(\operatorname{Bernoulli}\left(p\right)\) trials} required to obtain 
+\textbf{$r$ successes}. For \(k \geq r\), we have:
+\begin{itemize}
+  \item \(P(X=k) = \binom{k-1}{r-1}p^r(1-p)^{k-r}\);
+\end{itemize}
+\begin{multicols}{2}
+\begin{itemize}
+  \item \(E(X)=\dfrac{r}{p}\);
+  \item \(\operatorname{Var}\left(X\right)=\dfrac{r(1-p)}{p^2}\);
+\end{itemize}
+\end{multicols}
+
+\marker{Remark}: \(\operatorname{Geom}\left(p\right)=
+\operatorname{NB}\left(1,p\right).\)
+
+\subsection{Poisson Random Variable}
+
+\marker{Poisson}: A random variable \(X\) is said to have a \textbf{Poisson} 
+distribution with parameter \(\lambda\) if \(X\) takes values 
+\(0, 1, 2, \cdots\) with probabilities given as:
+\begin{equation*}
+  P(X = k) = \dfrac{e^{-\lambda}\lambda^k}{k!}, \quad \text{for }k=0, 1, 2, 
+  \cdots
+\end{equation*}
+\begin{multicols}{2}
+\begin{itemize}
+  \item \(E(X)=\lambda\);
+  \item \(\operatorname{Var}\left(X\right)=\lambda\).
+\end{itemize}
+\end{multicols}
+When \(n\) is large and \(\lambda\) is moderate, we can use \textbf{poisson} to
+approximate \textbf{binomial}:
+\begin{equation*}
+  \operatorname{Bin}\left(n,p\right) \approx \operatorname{Poisson}
+  \left(np\right).
+\end{equation*}
+I.e. \(P(X = k)\approx e^{-\lambda}\dfrac{\lambda^k}{k!}\).
+
+\marker{Examples obeying Poisson distribution}:
+\begin{itemize}
+  \item Number of misprints on a page;
+  \item Number of people in a community living to 100 years;
+  \item Number of wrong telephone numbers that are dialled in a day;
+  \item Number of people entering a store on a given day;
+  \item Number of particles emitted by a radioactive source.
+\end{itemize}
+These are approximately Poisson \textbf{because of the Poisson approximation 
+to the binomial distribution.}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{multicols*}
+\end{document}
