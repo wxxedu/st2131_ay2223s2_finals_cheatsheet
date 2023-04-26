@@ -7,29 +7,33 @@
 \usepackage{multicol}
 \usepackage{xcolor}
 
+% No Page Number
+\pagenumbering{gobble}
 % No Indent 
 \setlength\parindent{0pt}
 % Line Spacing to 1 
 \renewcommand{\baselinestretch}{1.0}
 % Remove line spacing before and after sections 
 \usepackage{titlesec}
-% \titlespacing\section{0pt}{0pt plus 0pt minus 0pt}{0pt plus 0pt minus 0pt}
-% \titlespacing\subsection{0pt}{0pt plus 0pt minus 0pt}{0pt plus 0pt minus 0pt}
-% \titlespacing\subsubsection{0pt}{0pt plus 0pt minus 0pt}{0pt plus 0pt minus 0pt}
+\titlespacing\section{0pt}{0pt plus 0pt minus 0pt}{0pt plus 0pt minus 0pt}
+\titlespacing\subsection{0pt}{0pt plus 0pt minus 0pt}{0pt plus 0pt minus 0pt}
+\titlespacing\subsubsection{0pt}{0pt plus 0pt minus 0pt}{0pt plus 0pt minus 0pt}
 
 \renewcommand{\familydefault}{\sfdefault}
 
 \AtBeginEnvironment{equation*}
-{\setlength{\abovedisplayskip}{3pt}\setlength{\belowdisplayskip}{3pt}\color{purple}}
+{\setlength{\abovedisplayskip}{3pt}\setlength{\belowdisplayskip}{3pt}\color{violet}}
 \AtBeginEnvironment{gather*}
-{\setlength{\abovedisplayskip}{3pt}\setlength{\belowdisplayskip}{3pt}\color{purple}}
+{\setlength{\abovedisplayskip}{3pt}\setlength{\belowdisplayskip}{3pt}\color{violet}}
 \AtBeginEnvironment{align*}
-{\setlength{\abovedisplayskip}{3pt}\setlength{\belowdisplayskip}{3pt}\color{purple}}
+{\setlength{\abovedisplayskip}{3pt}\setlength{\belowdisplayskip}{3pt}\color{violet}}
 
 
 % remove space before multicol 
 
 \setlength{\multicolsep}{0pt}
+% \setlength{\columnseprule}{0.2pt}
+% \def\columnseprulecolor{\color{magenta}}
 
 % reduce list spacing
 \usepackage{enumitem}
@@ -51,11 +55,25 @@
 \renewcommand{\subsection}[1]{\oldsubsection{\color{purple}{#1}}}
 \renewcommand{\thesubsection}{\color{purple}{\arabic{section}.\arabic{subsection}}}
 
-% Change color of equation to blue 
+% Change color of equation to violet 
 \let\oldinlinemathstart\(
-\renewcommand{\(}{\begingroup\color{purple}\oldinlinemathstart}
+\renewcommand{\(}{\begingroup\color{violet}\oldinlinemathstart}
 \let\oldinlinemathend\)
 \renewcommand{\)}{\oldinlinemathend\endgroup}
+
+% Itemize 
+
+\usepackage{enumitem}
+\setlist[itemize]{
+  before=\small,
+  label=\tiny\textcolor{magenta}{\textbullet},
+  leftmargin=*,labelsep=0.3em
+}
+\setlist[enumerate]{
+  before=\small,
+  label=\small\textcolor{magenta}{\arabic*.},
+  leftmargin=*,labelsep=0.3em
+}
 
 
 \begin{document}
@@ -257,10 +275,79 @@ I.e. \(P(X = k)\approx e^{-\lambda}\dfrac{\lambda^k}{k!}\).
 These are approximately Poisson \textbf{because of the Poisson approximation 
 to the binomial distribution.}
 
+\subsection{Hypergeometric Random Variable}
 
+\marker{Hypergeometric}: A random variable \(X\) is said to have a
+\textbf{hypergeometric} distribution with parameters \(N\), \(m\) and \(n\) if
+\(X\) takes values \(0, 1, 2, \cdots, n\) with probabilities given as:
+\begin{equation*}
+  P(X = x) = \dfrac{\binom{m}{x}\binom{N-m}{n-x}}{\binom{N}{n}}
+\end{equation*}
+for \(x = 0, 1, \cdots, \min(m, n)\).
+\begin{itemize}
+  \item \(\operatorname{E}\left(X\right)=\dfrac{nm}{N}\);
+  \item \(\operatorname{Var}\left(X\right)=\dfrac{nm}{N}\left[
+    \dfrac{(n-1)(m-1)}{N-1}+1 - \dfrac{nm}{N}
+  \right]\).
+\end{itemize}
 
+\marker{Example}: Suppose that we have $N$ balls, of which $m$ are red and 
+$N-m$ are blue. We choose $n$ of these balls, \textbf{without replacement},
+and define $X$ to be the number of red balls chosen. Then $X$ is a
+\textbf{hypergeometric} random variable, with 
+\(P(X = x) = {\binom{m}{x}\binom{N-m}{n-x}} / {\binom{N}{n}}\).
 
+\subsection{Distribution Functions and Probability Mass Functions}
 
+\marker{Properties of DF}:
+\begin{itemize}
+  \item \(F_X\) is a \textbf{non-decreasing} function, i.e. if $a < b$, then 
+  \(F_X(a) \leq F_X(b)\);
+\item \(\lim\limits_{b\rightarrow \infty}F_X(b) = 1\), and
+  \(\lim\limits_{b\rightarrow -\infty}F_X(b) = 0\)
+\item \(F_X\) has \textbf{left limits}, i.e. \(\lim\limits_{x\rightarrow
+  b^-}F_X(x)\) exists for all \(b\in \mathbb{R}\).
+\item \(F_X\) is \textbf{right continuous}, that is for any \(b \in
+  \mathbb{R}\), \(\lim\limits_{x\rightarrow b^+}F_X(x) = F_X(b)\).
+\end{itemize}
+
+\marker{Useful Calculations}:
+\begin{enumerate}
+  \item Calculating probabilities from \textbf{DF}:
+  \begin{itemize}
+    \item \(P(a<X\leq b)=F_X(b) - F_X(a)\);
+    \item \(P(X=a)=F_X(a)-F_X(a^-)\), where 
+      \(F_X(a^-)=\lim\limits_{x\rightarrow a^-}F_X(x)\).
+    \item \(P(a \leq X \leq b) = P(X = a) + P(a < X \leq b)=F_X(b)-F_X(a^-)\).
+  \end{itemize}
+  \item Calculating probabilities from \textbf{PMF}:
+    \[P(A) = \sum_{x\in A}p_X(x).\]
+  \item Calculating \textbf{PMF} from \textbf{DF}:
+    \[p_X(x) = F_X(x) - F_X(x^-), \quad x \in \mathbb{R}.\]
+  \item Calculating \textbf{DF} from \textbf{PMF}:
+    \[F_X(x) = \sum_{y\leq x}p_X(y), \quad x \in \mathbb{R}.\]
+\end{enumerate}
+
+\section{Continuous Random Variables}
+
+\subsection{Introduction}
+
+\marker{Definition 5.1} We say that \(X\) is a \textbf{continuous} random
+variable if there exists a nonnegative function $f_X$ defined for all real 
+$x \in \mathbb{R}$ such that 
+\[P(a < X \leq b) = \int_a^b f_X(x)dx,\]
+for \(-\infty < a < b < +\infty\). The function $f_X$ is called the
+\textbf{probability density function} (p.d.f.) of $X$.
+
+\marker{Definition 5.2} We define the \textbf{distribution function} of \(X\)
+by \[F_X(x0) = P(X \leq x),\]for \(x \in \mathbb{R}\).
+
+\marker{Remark}: since definition of \textbf{DF} is the same for both
+discrete and continuous random variables:
+
+\(F_X(x) = \int_{-\infty}^{x}f_X(t)\ \mathrm{d}t\), and
+\(f_X(x) = \dfrac{\partial{d}}{\partial{d}x}F_X(x)\).
+Therefore, we have:
 
 
 
