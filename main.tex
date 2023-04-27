@@ -811,10 +811,75 @@ where exponent is:
 2\rho\dfrac{(x-\mu_x)(y-\mu_y)}{\sigma_x\sigma_y}.\right]}{2(1-p^2)}.\]
 
 
+\subsection{Joint Probability Distribution of Functions of Random Variables}
+
+\marker{Proposition 6.8} Assume that the following conditions are satisfied:
+\begin{enumerate}
+  \item Let \(X\) and \(Y\) be \textbf{jointly continuously} distribtued random
+    variables with known joint density function.
+  \item Let \(U\) and \(V\) be givven functions of \(X\) and \(Y\) in the
+    form \[U = g(X, Y),\quad V = h(X, Y)\]. And we can \textbf{uniquely} solvve
+    for \(X\) and \(Y\) in terms of \(U\) and \(V\), i.e. say \(x = a(u, v)\)
+    and \(y = b(u, v)\).
+  \item The functions \(g\) and \(h\) have \textbf{continuous partial
+    derivatives} at all points \((x, y)\) and \[J(x,y):=\begin{vmatrix}
+      \dfrac{\partial g}{\partial x} & \dfrac{\partial g}{\partial y} \\
+      \dfrac{\partial h}{\partial x} & \dfrac{\partial h}{\partial y}
+    \end{vmatrix} = \dfrac{\partial g}{\partial x} \dfrac{\partial
+    h}{\partial y} - \dfrac{\partial g}{\partial y} \dfrac{\partial
+  h}{\partial x} \neq 0\] for all \((x, y)\).
+\end{enumerate}
+Then, the \textbf{joint probability density function} of \(U\) and \(V\) is
+given by 
+\[f_{U,V}(u,v) = f_{X,Y}(x,y)|J(x,y)|^{-1}\]
+where \(x = a(u, v)\) and \(y = b(u, v)\), (check point 2).
+
+\marker{Proposition 6.9} When the joint density function of the \(n\) random
+variables \(X_1, X_2, \cdots, X_n\) is given and we want to compute the joint
+density function of \(Y_1, Y_2, \cdots, Y_n\) where \(Y_i = g_i(X_1, X_2,
+\cdots, X_n)\). We assume that the function \(g_j\) have continuous partial
+derivatives and the Jacobian determinant \(J(x_1, x_2, \cdots, x_n)\neq 0\)
+at all points \((x_1, x_2, \cdots, x_n)\), where 
+\[
+  J(x_1, x_2, \cdots, x_n) = \begin{vmatrix}
+    \dfrac{\partial g_1}{\partial x_1} & \dfrac{\partial g_1}{\partial x_2} &
+    \cdots & \dfrac{\partial g_1}{\partial x_n} \\
+    \dfrac{\partial g_2}{\partial x_1} & \dfrac{\partial g_2}{\partial x_2} &
+    \cdots & \dfrac{\partial g_2}{\partial x_n} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    \dfrac{\partial g_n}{\partial x_1} & \dfrac{\partial g_n}{\partial x_2} &
+    \cdots & \dfrac{\partial g_n}{\partial x_n} \\
+  \end{vmatrix}
+\]
+Further, we suppose that the equations \(y_i\)\(=\)\(g_i(x_1, x_2, \cdots, x_n)\)
+have a \textbf{unique} solution for \(x_1, x_2, \cdots, x_n\), say 
+\(x_i = h_i(y_1, y_2, \cdots, y_n)\). Then, the \textbf{joint density function}
+of \(Y_1, Y_2, \cdots, Y_n\) is given by. 
+\(f_{Y_1, Y_2, \cdots, Y_n}\)\((y_1, y_2,
+\cdots, y_n)\) \(=\) \(f_{X_1, X_2, \cdots,
+X_n}(x_1, x_2, \cdots, x_n)|J(x_1, x_2, \cdots, x_n)|^{-1}\)
+where \(x_i = h_i(y_1, y_2, \cdots, y_n)\)
 
 
+\subsection{Jointly Distributed Random Variables: $n \geq 3$}
 
+\[F_{X, Y, Z}(x, y, z) = P(X \leq x, Y \leq y, Z \leq z).\]
 
+\marker{Proposition 6.10} For jointly continuous random variables, the
+following three conditions are equivalent:
+\begin{itemize}
+  \item Random variables \(X, Y, Z\) are \textbf{independent}.
+  \item For all \(x,y,z \in \mathbb{R}\), we have \[f_{X, Y, Z}(x,y,z) =
+      f_X(x)f_Y(y)f_Z(z).\]
+  \item For all \(x, y, z \in \mathbb{R}\), we have 
+    \[F_{X, Y, Z}(x, y, z) = F_X(x)F_Y(y)F_Z(z).\]
+\end{itemize}
+
+\marker{Proposition 6.11} Random variables \(X\), \(Y\), and \(Z\) are
+independent if and only if there exist functions \(g_1, g_2,
+g_3:\mathbb{R}\rightarrow \mathbb{R}\) such that for all \(x, y, z \in
+\mathbb{R}\), we have
+\[f_{X, Y, Z}(x, y, z) = g_1(x)g_2(y)g_3(z).\]
 
 
 
