@@ -1,4 +1,4 @@
-\documentclass[11pt]{article}
+\documentclass[10pt]{article}
 
 \usepackage[margin=1cm]{geometry}
 \geometry{a3paper}
@@ -6,6 +6,8 @@
 \usepackage{graphicx}
 \usepackage{multicol}
 \usepackage{xcolor}
+
+% Water mark
 
 % No Page Number
 \pagenumbering{gobble}
@@ -22,11 +24,23 @@
 \renewcommand{\familydefault}{\sfdefault}
 
 \AtBeginEnvironment{equation*}
-{\setlength{\abovedisplayskip}{3pt}\setlength{\belowdisplayskip}{3pt}\color{violet}}
+{\setlength{\abovedisplayskip}{0pt}\setlength{\belowdisplayskip}{0pt}\color{violet}}
 \AtBeginEnvironment{gather*}
-{\setlength{\abovedisplayskip}{3pt}\setlength{\belowdisplayskip}{3pt}\color{violet}}
+{\setlength{\abovedisplayskip}{0pt}\setlength{\belowdisplayskip}{0pt}\color{violet}}
 \AtBeginEnvironment{align*}
-{\setlength{\abovedisplayskip}{3pt}\setlength{\belowdisplayskip}{3pt}\color{violet}}
+{\setlength{\abovedisplayskip}{0pt}\setlength{\belowdisplayskip}{0pt}\color{violet}}
+
+% make sum, intersection, union, integral bigger
+\let\oldsum\sum
+\renewcommand{\sum}{\displaystyle\oldsum}
+\let\oldprod\prod
+\renewcommand{\prod}{\displaystyle\oldprod}
+\let\oldint\int
+\renewcommand{\int}{\displaystyle\oldint}
+\let\oldbigcup\bigcup
+\renewcommand{\bigcup}{\displaystyle\oldbigcup}
+\let\oldbigcap\bigcap
+\renewcommand{\bigcap}{\displaystyle\oldbigcap}
 
 
 % remove space before multicol 
@@ -77,9 +91,9 @@
 
 
 \begin{document}
-\begin{center}
-\LARGE ST2131 Finals Cheatsheet by Wang Xiuxuan
-\end{center}
+% \begin{center}
+% \LARGE ST2131 Finals Cheatsheet by Wang Xiuxuan
+% \end{center}
 \begin{multicols*}{3}
 \section{Chapter 1}
 % TODO
@@ -166,7 +180,7 @@ defined by
 
 \subsection{Discrete Random Variables Arising from Repeated Trials}
 
-\marker{Bernoulli Random Variable}: \(\operatorname{Be}\left(p\right)\), define 
+\marker{Bernoulli Random Varaible} \(\operatorname{Be}\left(p\right)\), define 
 \begin{equation*}
   X = \begin{cases}1, &\text{if it is a success};\\ 
   0 &\text{if it is a failure.}\end{cases}
@@ -180,7 +194,7 @@ defined by
 \end{itemize} 
 \end{multicols}
 
-\marker{Binomial Random Variable}: \(\operatorname{Bin}\left(n,p\right)\), define
+\marker{Binomial Random Varaible} \(\operatorname{Bin}\left(n,p\right)\), define
 \(X\) as \textbf{number of successes} in \(n\)
 \(\operatorname{Bernoulli}\left(p\right)\) trials.
 
@@ -195,7 +209,7 @@ Therefore, \(X\) takes values \(0, 1, 2, \cdots, n\).
 \end{itemize}
 \end{multicols}
 
-\marker{Geometric Random Variable}: \(\operatorname{Geom}\left(p\right)\), 
+\marker{Geometric Random Varaible} \(\operatorname{Geom}\left(p\right)\), 
 define \(X\) as \textbf{number of trials} until the first success in a 
 sequence of independent \(\operatorname{Bernoulli}\left(p\right)\) trials.
 \begin{itemize}
@@ -224,7 +238,7 @@ trials in order to obtain the first success. Here,
 \end{itemize}
 \end{multicols}
 
-\marker{Negative Binomial Random Variable}: \(\operatorname{NB}
+\marker{Negative Binomial Random Varaible} \(\operatorname{NB}
 \left(r,p\right)\), define \(X\) to be \textbf{number of
 \(\operatorname{Bernoulli}\left(p\right)\) trials} required to obtain 
 \textbf{$r$ successes}. For \(k \geq r\), we have:
@@ -340,7 +354,7 @@ for \(-\infty < a < b < +\infty\). The function $f_X$ is called the
 \textbf{probability density function} (p.d.f.) of $X$.
 
 \marker{Definition 5.2} We define the \textbf{distribution function} of \(X\)
-by \[F_X(x0) = P(X \leq x),\]for \(x \in \mathbb{R}\).
+by \[F_X(x) = P(X \leq x),\]for \(x \in \mathbb{R}\).
 
 \marker{Remark}: since definition of \textbf{DF} is the same for both
 discrete and continuous random variables:
@@ -348,6 +362,483 @@ discrete and continuous random variables:
 \(F_X(x) = \int_{-\infty}^{x}f_X(t)\ \mathrm{d}t\), and
 \(f_X(x) = \dfrac{\partial{d}}{\partial{d}x}F_X(x)\).
 Therefore, we have:
+\begin{itemize}
+  \item $P(X = x) = 0$;
+  \item The distribution function, $F_X(x)$, is continuous;
+  \item For any $a, b \in (-\infty, \infty)$, 
+    \begin{align*}
+      P(a \leq X \leq b) &= P(a < X \leq b) \\ 
+                         &= P(a \leq X < b) \\ 
+                         &= P(a < X < b).
+    \end{align*}
+\end{itemize}
+
+\marker{Determining constant}: we have: 
+\[1 = P(-\infty < X < \infty) = \int_{-\infty}^{\infty}f_X(x)\ \mathrm{d}x\]
+
+\subsection{Expectation and Variance}
+
+\marker{Expectation}: For a continuous random variable \(X\) with p.d.f.
+\(f_X(x)\), we define the \textbf{expectation} of \(X\) by
+\[E(X) = \int_{-\infty}^{\infty}xf_X(x)\ \mathrm{d}x,\]
+and the \textbf{variance} of \(X\) by
+\[\operatorname{Var}(X) = \int_{-\infty}^{\infty}(x-E(X))^2f_X(x)\ \mathrm{d}x.\]
+
+\marker{Proposition 5.1} If \(X\) is a \textbf{continuous random variable} 
+with \textbf{p.d.f.} \(f_X(x)\), then for any real value function \(g(x)\),
+\begin{itemize}
+  \item \(E(g(X)) = \int_{-\infty}^{\infty}g(x)f_X(x)\ \mathrm{d}x\);
+  \item \(E(aX + b)\) = \(aE(X) + b\);
+  \item \(\operatorname{Var}(X) = E(X^2) - [E(X)]^2\).
+\end{itemize}
+
+\marker{Lemma 5.1 Tail Sum Formula} Let \(X\) be a \textbf{nonnegative}
+random variable, then
+\[E(X) = \int_0^{\infty}P(X > x)\ \mathrm{d}x.\]
+
+\subsection{Uniform Distribution}
+
+\marker{Definition} A continuous random variable \(X\) is said to have a
+\textbf{uniform distribution} on the interval \((a, b)\) if its p.d.f. is given
+by
+\[f_X(x) = \begin{cases}
+  \dfrac{1}{b-a}, & a < x < b \\
+  0, & \text{otherwise}.
+\end{cases}\]
+Then, \[F_X(x) = \begin{cases}
+  0, & x < a \\
+  \dfrac{x-a}{b-a}, & a \leq x < b \\
+  1, & b \leq x.
+\end{cases}\]
+We have:
+\begin{multicols}{2}
+  \begin{itemize}
+    \item \(E(X) = \dfrac{a+b}{2}\);
+    \item \(\operatorname{Var}(X) = \dfrac{(b-a)^2}{12}\).
+  \end{itemize}
+\end{multicols}
+
+\subsection{Normal Distribution}
+
+\marker{Definition} A continuous random variable \(X\) is said to have a
+\textbf{normal distribution} with parameters \(\mu\) and \(\sigma^2\) if its
+p.d.f. is given by
+\[f_X(x) = \dfrac{1}{\sqrt{2\pi}\sigma}e^{-{(x-\mu)^2}/{2\sigma^2}},\]
+for \(-\infty < x < \infty\). We write \(X \sim N(\mu, \sigma^2)\).
+
+\marker{Standard Normal} A continuous random variable \(Z\) is said to have a
+\textbf{standard normal distribution} if its p.d.f. is given by
+\[f_Z(z) = \dfrac{1}{\sqrt{2\pi}}e^{-{z^2}/{2}},\]
+for \(-\infty < z < \infty\). We write \(Z \sim N(0, 1)\).
+
+If \(X \sim N(\mu, \sigma^2)\), then
+\(Z = \dfrac{X-\mu}{\sigma} \sim N(0, 1),\)
+and 
+\begin{align*}
+P(a < Y \leq b) &= P\left(\dfrac{a-\mu}{\sigma}< Z \leq
+  \dfrac{b-\mu}{\sigma}\right) \\ 
+                &= \Phi\left(\dfrac{b-\mu}{\sigma}\right) - 
+                \Phi\left(\dfrac{a-\mu}{\sigma}\right).
+\end{align*}
+\marker{Properties of Normal Distribution}
+\begin{itemize}
+  \item \(P(Z \geq 0) = P(Z \leq 0) = \dfrac{1}{2}\);
+  \item \(-Z \sim N(0, 1)\);
+  \item \(P(Z \leq x) = 1 - P(Z > x)\) for \(-\infty < x < \infty\);
+  \item \(P(Z \leq -x) = P(Z \geq x)\) for \(-\infty < x < \infty\);
+  \item if \(Y \sim N(\mu, \sigma^2)\), then \(X := (Y-\mu)/\sigma \sim N(0,
+    1)\);
+  \item if \(X \sim N(0, 1)\), then \(Y := aX + b \sim N(b, a^2)\).
+\end{itemize}
+
+\marker{Expectation and Variance}
+\begin{itemize}
+  \item if \(Y \sim N(\mu, \sigma^2)\), then \(E(Y) = \mu\) and \(\operatorname{Var}(Y) =
+    \sigma^2\);
+  \item if \(Z\sim N(0,1)\),  then \(E(Z)=0\) and \(\operatorname{Var}(Z)=1\).
+\end{itemize}
+
+\subsection{Expontential Distribution}
+
+\marker{Definition} A continuous random variable \(X\) is said
+to have an \textbf{exponential distribution} with parameter \(c\), 
+\(\lambda > 0\) if its \textbf{probability density function} is given by
+\[f_X(x) = \begin{cases}
+  ce^{-\lambda x}, & x > 0 \\
+  0, & x \leq 0.
+\end{cases}\]
+Its \textbf{distribution function} is given by
+\[F_X(x) = \begin{cases}
+  1 - e^{-\lambda x}, & x > 0 \\
+  0, & x \leq 0.
+\end{cases}\]
+\begin{itemize}
+  \item \textbf{Memoryless Property}: 
+    \[P(X > s + t | X > s) = P(X > t), \quad s, t > 0.\]
+\end{itemize}
+\begin{multicols}{2}
+  \begin{itemize}
+    \item \(E(X) = \dfrac{1}{\lambda}\);
+    \item \(\operatorname{Var}(X) = \dfrac{1}{\lambda^2}\).
+  \end{itemize} 
+\end{multicols}
+
+\subsection{Some Other Distributions}
+
+\marker{Gamma} A continuous random variable \(X\) is said to have a
+\textbf{gamma distribution} with parameters \(\alpha\) and \(\lambda\), where
+\(\alpha > 0\) and \(\lambda > 0\), if its \textbf{probability density function}
+is given by
+\[f_X(x) = \begin{cases}
+  \dfrac{\lambda^{\alpha}x^{\alpha-1}e^{-\lambda x}}{\Gamma(\alpha)}, & x > 0 \\
+  0, & x \leq 0,
+\end{cases}\]
+where \(\Gamma(\alpha) = \int_0^{\infty} x^{\alpha-1}e^{-x}dx\).
+Its \textbf{distribution function} is given by
+\[F_X(x) = \begin{cases}
+  \dfrac{\gamma(\alpha, \lambda x)}{\Gamma(\alpha)}, & x > 0 \\
+  0, & x \leq 0.
+\end{cases}\]
+\begin{multicols}{2}
+  \begin{itemize}
+    \item \(E(X) = \dfrac{\alpha}{\lambda}\);
+    \item \(\operatorname{Var}(X) = \dfrac{\alpha}{\lambda^2}\).
+    \item \(\Gamma(1) = \int_{0}^{\infty}e^{-y}\ \mathrm{d}y = 1.\)
+    \item \(\Gamma(\alpha) = (\alpha - 1)\Gamma(\alpha - 1)\).
+    \item \(\Gamma(n) = (n-1)!\) for \(n \in \mathbb{N}\).
+  \end{itemize}
+\end{multicols}
+
+\marker{Weibull} A continuous random variable \(X\) is said to have a
+\textbf{Weibull distribution} with parameters \(\alpha\) and \(\lambda\), where
+\(\alpha > 0\) and \(\lambda > 0\), if its \textbf{probability density function}
+is given by \(f_X(x) =\)
+\[\begin{cases}
+  \dfrac{\beta}{\alpha}\left(\dfrac{x-v}{\alpha}\right)^{\beta -
+    1}\operatorname{exp}\left[-\left(\dfrac{x-v}{\alpha}\right)^\beta \right],
+    & x > v \\
+  0, & x \leq v,
+\end{cases}\]
+If \(X \sim \operatorname{W}\left(v,\alpha,\beta\right)\), then 
+\begin{itemize}
+  \item \(\operatorname{E}(X) = v + \alpha\Gamma\left(1 + \dfrac{1}{\beta}\right)\);
+  \item \(\operatorname{Var}(X) = \alpha^2\left[\Gamma\left(1 + \dfrac{2}{\beta}\right) -
+    \left(\Gamma\left(1 + \dfrac{1}{\beta}\right)\right)^2\right]\).
+\end{itemize}
+
+\marker{Cauchy} A continuous random variable \(X\) is said to have a
+\textbf{Cauchy distribution} with parameters \(\alpha\) and \(\beta\), where
+\(\theta \in \mathbb{R}\) and \(\alpha > 0\), if its \textbf{probability density
+function} is given by
+\[f_X(x) = \dfrac{1}{\pi\alpha\left[1 + \left(\dfrac{x-\theta}{\alpha}\right)^2\right]},\]
+\begin{itemize}
+  \item \(E(X)\) does not exist;
+  \item \(\operatorname{Var}(X)\) does not exist.
+\end{itemize}
+
+\marker{Beta} A continuous random variable \(X\) is said to have a
+\textbf{beta distribution} with parameters \(\alpha\) and \(\beta\), where
+\(\alpha > 0\) and \(\beta > 0\), if its \textbf{probability density function}
+is given by
+\[f_X(x) = \begin{cases}
+  \dfrac{1}{B(a,b)}x^{\alpha-1}(1-x)^{\beta-1},
+  & 0 < x < 1 \\
+  0, & \text{otherwise}.
+\end{cases}\]
+where \(B(\alpha, \beta) = \int_0^1 x^{\alpha-1}(1-x)^{\beta-1}dx\), is the 
+\textbf{Beta function}. 
+\begin{itemize}
+  \item \(E(X) = \dfrac{\alpha}{\alpha + \beta}\);
+  \item \(\operatorname{Var}(X) = \dfrac{\alpha\beta}{(\alpha + \beta)^2(\alpha +
+    \beta + 1)}\).
+\end{itemize}
+
+\subsection{Approximation of Binomial Distribution}
+
+\marker{Theorem 5.1 (De Moivre-Laplace Theorem)} Suppose that \(X \sim
+\operatorname{Bin}\left(n,p\right)\). Then, for any \(a < b\), we have
+\[P\left(a\leq \dfrac{X-np}{\sqrt{npa}} \leq b\right) \rightarrow \Phi(b) -
+\Phi(a)\]
+as \(n \rightarrow \infty\), where \(q = 1-p\) and \(\Phi(z) = P(Z \leq z)\) 
+with \(Z \sim \operatorname{N}\left(0,1\right)\). That is, 
+\[\operatorname{Bin}\left(n,p\right)\approx
+\operatorname{N}\left(np,npq\right).\]
+Equivalently, \(\dfrac{X-np}{\sqrt{npq}}\approx Z\) where \(Z \sim
+\operatorname{N}\left(0,1\right)\).
+
+Generally good for values of \(n\) satisfying \(npq \geq 10\).
+
+\marker{Continuity Correction} If \(X \sim \operatorname{Bin}\left(n,p\right)\),
+then 
+\begin{align*}
+P(X=k) &= P(k-0.5 < X < k + 0.5) \\
+P(X \geq k) &= P(X \geq k- 0.5) \\ 
+P(X \leq k) &= P(X \leq k + 0.5)
+\end{align*}
+
+\marker{Poisson Approximation to Binomial} Works when \(n\) is large and \(p\) is
+small. \textbf{As a working rule, $p < 0.1$ and set $\lambda = np$}.
+
+\subsection{Distribution of a Function of a Random Variable}
+
+\marker{$\chi^2$-Distribution} Let \(X_1, X_2, \ldots, X_n\) be independent
+standard normal random variables. Then, the random variable
+\[Q = \sum_{i=1}^{n}X_i^2\]
+has a \textbf{chi-squared distribution} with \(n\) degrees of freedom, denoted
+by \(Q \sim \chi^2(n)\).
+The \textbf{p.d.f.} of \(Q\) is given by
+\[f_Q(q) = \begin{cases}
+  \dfrac{1}{2^{n/2}\Gamma(n/2)}q^{n/2-1}e^{-q/2}, & q > 0 \\
+  0, & q \leq 0.
+\end{cases}\]
+The \textbf{d.f.} of \(Q\) is given by
+\[F_Q(q) = \begin{cases}
+  \dfrac{\gamma(n/2,q/2)}{\Gamma(n/2)}, & q > 0 \\
+  0, & q \leq 0,
+\end{cases}\]
+where \(\gamma = \int_{0}^{q/2}t^{n/2-1}e^{-t}\,dt\) and
+\(\Gamma = \int_{0}^{\infty}t^{n/2-1}e^{-t}\,dt\).
+\begin{multicols}{2} 
+\begin{itemize}
+  \item \(E(Q) = n\);
+  \item \(\operatorname{Var}(Q) = 2n\).
+\end{itemize}
+\end{multicols}
+
+\marker{Log-Normal Distribution} Let $Z$ be a standard normal random variable.
+Then, the random variable $X = e^{\mu + \sigma Z}$ has a \textbf{log-normal
+distribution} with parameters $\mu$ and $\sigma$, denoted by $X \sim
+\operatorname{LN}(\mu, \sigma)$. The \textbf{p.d.f.} of $X$ is given by
+\[f_X(x) = \begin{cases}
+  \dfrac{1}{x\sigma\sqrt{2\pi}}\exp\left[-\frac{1}{2\sigma^2}(\ln x - \mu)^2 
+  \right], & x > 0 \\
+  0, & x \leq 0.
+\end{cases}\]
+The \textbf{d.f.} of $X$ is given by
+\[F_X(x) = \begin{cases}
+  \dfrac{1}{2} + \dfrac{1}{2}\operatorname{erf}\left(\dfrac{\ln x - \mu}{\sigma\sqrt{2}}\right), & x > 0 \\
+  0, & x \leq 0.
+\end{cases}\]
+where \(\operatorname{erf}(z) = \dfrac{2}{\sqrt{\pi}}\int_{0}^{z}e^{-t^2}\,dt\)
+is the \textbf{error function}.
+
+\marker{Theorem 5.2} Let \(X\) be a \textbf{continuous} random variable having
+probaility density function \(f_X\). Suppose that \(g(x)\) is a
+\textbf{strictly monotonic}, \textbf{differentiable} function of \(X\). Then
+random variable \(Y\) defined by \(Y = g(X)\) has a \textbf{probability density
+function} given by
+\[f_Y(y) = \begin{cases}
+  f_X(g^{-1}(y))\left|\dfrac{d}{dy}g^{-1}(y)\right|, & \text{if } y \in
+  g(\mathcal{R}_X) \\
+  0, & \text{otherwise}.
+\end{cases}\]
+where \(g^{-1}\) is the inverse function of \(g\).
+
+
+\section{Jointly Distributed Random Variables}
+
+\subsection{Joint Distribution Functions}
+
+\marker{Definition 6.1} For any two random variables \(X\) adn \(Y\) defined on
+the same sample space, we define the \textbf{joint distribution function} of 
+\(X\) and \(Y\), denoted by \(F_{XY}(x,y)\), by
+\[F_{XY}(x,y) = P(X \leq x, Y \leq y), \quad \text{for }x,y\in \mathbb{R},\]
+where \(\{X \leq x, Y \leq y\} := \{X \leq x\}\cap \{Y \leq y\}\).
+
+The \textbf{Marginal Distribution Function} of \(X\) and \(Y\) are:
+\begin{align*}
+  F_X(x) &= P(X \leq x) = P(X \leq x, Y < \infty) = F_{XY}(x,\infty) \\
+  F_Y(y) &= P(Y \leq y) = P(X < \infty, Y \leq y) = F_{XY}(\infty,y)
+\end{align*}
+
+\marker{Useful Calculations}
+\begin{align*}
+   & P(X > a, Y > b) \\
+  =& 1 - F_X(a) - F_Y(b) + F_{XY}(a,b); \\
+   & P(a_1 < X \leq a_2, b_1 < Y \leq b_2) \\
+  =& F_{XY}(a_2,b_2) - F_{XY}(a_1,b_2) 
+   - F_{XY}(a_2,b_1) + F_{XY}(a_1,b_1)
+\end{align*}
+
+\marker{Joint Discrete Random Variables} The \textbf{joint pmf} of $X$ and $Y$,
+denoted by $p_{X, Y}(x, y)$, is defined by
+\[p_{X, Y}(x, y) = P(X = x, Y = y), \quad \text{for }x,y\in \mathbb{R}.\]
+We can recover the \textbf{marginal p.m.f} of $X$ and $Y$ by
+\begin{align*}
+  p_X(x) = \sum_{y}p_{X, Y}(x, y),\quad
+  p_Y(y) = \sum_{x}p_{X, Y}(x, y).
+\end{align*}
+\marker{Some useful formulas}
+\begin{itemize}
+  \item \(P(a_q < X \leq a_2,b_1 < Y \leq b_2) = \sum_{a_1 < x \leq a_2}
+    \sum_{b_1 < y \leq b_2}p_{X, Y}(x, y)\);
+  \item \(F_{X, Y}(a, b) = P(X \leq a, Y \leq b) = \sum_{x\leq a}\sum_{y \leq
+    b} p_{(X, Y)}(x, y)\);
+  \item \(P(X > a, Y > b) = \sum_{x > a}\sum_{y > b}p_{(X, Y)}(x,y)\).
+\end{itemize}
+
+\marker{Jointly Continuous Random Variables} We say that \(X\) and \(Y\) are
+\textbf{jointly continuous random variables} if there exists a function 
+\(f_{X, Y}(x, y)\), called the \textbf{joint probability density function} of
+\(X\) and \(Y\), defined for all real \(x\) and \(y\), having the property that
+for every set $C$ of paris of real numbers, (i.e. \(C \subset \mathbb{R}^2\)),
+we have 
+\[P\left((X, Y)\in C\right):=\int\int_{(x,y)\in
+C}f_{X,Y}(x,y)\,\mathrm{d}x\mathrm{d}y.\]
+We can recover the \textbf{marginal p.d.f.} of \(X\) and \(Y\): 
+\(f_X(x)=\int_{-\infty}^{\infty}f_{X, Y}(x,y)\ \mathrm{d}y\) and 
+\(f_Y(y)=\int_{-\infty}^{\infty}f_{X, Y}(x, y)\ \mathrm{d}x\).
+
+\marker{Some useful formulas}
+\begin{itemize}
+  \item Let \(A, B \subset \mathbb{R}\), take \(C = A \times B\) above 
+    \[P(X \in A, Y \in B) = \int_A\int_B
+    f_{X,Y}(x,y)\,\mathrm{d}y\mathrm{d}x.\]
+  \item Let \(a_1, a_2, b_1, b_2 \in \mathbb{R}\) where \(a_1 < a_2\) and \(b_1
+    < b_2\), we have 
+    \[P(a_1 < X \leq a_2, b_1 < Y \leq b_2) = \int_{a_1}^{a_2}\int_{b_1}^{b_2}
+    f_{X, Y}(x,y)\,\mathrm{d}y\mathrm{d}x.\]
+  \item Let \(a, b\in \mathbb{R}\), we have
+    \[F_{X, Y}(a,b) = P(X \leq a, Y \leq b) = \int_{-\infty}^a\int_{-\infty}^b
+      f_{X, Y}(x, y)\,\mathrm{d}y\mathrm{d}x.\]
+  \item As a result:
+    \[f_{X, Y}(x, y)\dfrac{\partial^2}{\partial x \partial y}F_{X, Y}(x,y).\]
+\end{itemize}
+
+\subsection{Independent Random Variables}
+
+\marker{Definition} Two random variables \(X\) and \(Y\) are said to be
+\textbf{independent} if 
+\[P(X \in A, Y \in B):=P(X \in A)P(Y \in B),\]
+for any \(A, B \subset \mathbb{R}\).
+
+Equivalently, \(x\) and \(y\) are independent iff 
+\[F_{X,Y}(x,y)=F_X(x)F_Y(y).\]
+
+\marker{Proposition 6.3} Random variables \(X\) and \(Y\) are
+\textbf{independent} if and only if there exist functions \(g,h:
+\mathbb{R}\rightarrow \mathbb{R}\) such that for all \(x, y\in \mathbb{R}\), we
+have 
+\[f_{X, Y}(x, y) = h(x)g(x).\]
+
+\subsection{Sums of Independent Random Variables}
+
+\marker{Convolution} Let \(X\) and \(Y\) be \textbf{continuous and independent}. We have:
+\[f_{X,Y}(x,y) = f_X(x)f_Y(y)\]
+for \(x, y \in \mathbb{R}\). Then, we have:
+\begin{align*}
+F_{X+Y}(a) &= P(X + Y \leq a)\\
+           &= \int_{-\infty}^{\infty}F_X(a-y)f_Y(y)\ \mathrm{d}y \\ 
+           &= \int_{-\infty}^{\infty}F_Y(a-x)f_X(x)\ \mathrm{d}x
+\end{align*}
+This is called the \textbf{convolution} of \(f_X\) and \(f_Y\).
+
+\marker{Sum of Gamma} Assume
+that \(X\sim \operatorname{Gamma}\left(\alpha,\lambda\right)\) and \(Y \sim
+\operatorname{Gamma}\left(\lambda\right)\), then 
+\[X + Y \sim \operatorname{Gamma}\left(\alpha+\beta, \lambda\right).\]
+
+\marker{Beta Function} \[\operatorname{B}\left(\alpha,\beta\right) =
+\dfrac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha + \beta)} = \int_{0}^{1}\
+(1-u)^{\alpha-1}u^{\beta - 1}\mathrm{d}u.\]
+
+\marker{Sum of Normal} If 
+\(X_i, i = 1, \cdots, n\) are independent random variables that are normally
+distributed with respective parameters \(\mu_i\), \(\sigma_i^2\), \(i = 1,
+\cdots, n\) then 
+\[\sum\limits_{i=1}^{n}X_i \sim N\left(\sum\limits_{i=1}^{n}\mu_i,
+\sum\limits_{i=1}^{n}\sigma_i^2\right).\]
+
+\marker{Sum of Gamma} If \(X \equiv
+\operatorname{Poisson}\left(\lambda\right)\), \(Y \sim
+\operatorname{Poisson}\left(\mu\right)\), and \(X\) and \(Y\) are independent,
+then the \textbf{p.m.f.} of \(X + Y\):
+\begin{align*}
+  P(X + Y = n) &= \sum\limits_{k=0}^{n}P(X = k, Y = n-k) \\ 
+               &= \dfrac{\exp[-(\lambda + \mu)](\lambda + \mu)^n}{n!}
+\end{align*}
+The sum of two independent Poisson random variables is \textbf{still Poisson}, 
+the mean is the \textbf{sum of the means}.
+
+\marker{Sum of Binomial (same prob)} \(X\sim
+\operatorname{Bin}\left(n,p\right)\), \(Y\sim
+\operatorname{Bin}\left(m,p\right)\), where \(X\), \(Y\) are independent. Then,
+the \textbf{p.m.f.} of \(X + Y\):
+\begin{align*}
+  P(X + Y = k) &= \sum\limits_{i=0}^{k}P(X=i, Y = k-i) \\ 
+               &= \binom{n+m}{k}p^k(1-p)^{n+m-k}
+\end{align*}
+The sum of 2 indepndent binomial random variables with the \textbf{same success
+probability}, \(p\), is still binomial, with parameters \(n+m\) and \(p\).
+
+\subsection{Conditional distributions: Discrete Case}
+
+\marker{Conditional P.M.F.} of \(X\) given \(Y = y\):
+\[P(X = x|Y = y) = \dfrac{P(X = x, Y = y)}{P(Y = y)} =
+\dfrac{p_{X,Y}(x,y)}{p_Y(y)},\]
+for all values \(Y\) such that \(p_Y(y) > 0\).
+
+\marker{Conditional D.F.} of \(X\) given \(Y = y\):
+\[F_{X|Y}(x|y) = P(X \leq x|Y = y) = \sum_{a\leq x}p_{X|Y}(a|y).\]
+
+\marker{Proposition 6.6} If \(X\) is independent of \(Y\), then the
+\textbf{conditional p.m.f.} of \(X\) given that \(Y = y\) is the same as the
+\textbf{marginal p.m.f.} of \(X\) for every \(Y\) such that \(p_Y(y)> 0\).
+
+\subsection{Conditional distributions: Continuous Case}
+
+\marker{Conditional P.D.F.} of \(X\) given \(Y = y\):
+\[f_{X|Y}(x|y) = \dfrac{f_{X,Y}(x,y)}{f_Y(y)},\]
+for all values \(y\) such that \(f_Y(y) > 0\).
+
+\marker{Conditional D.F.} of \(X\) given \(Y = y\):
+\[F_{(X|Y)}(x|y) = P(X \leq x |Y=y) = \int_{-\infty}^{x}f_{X|Y}(t|y)\
+\mathrm{d}t.\]
+
+\marker{Proposition 6.7} If \(X\) is independent of \(Y\), then the
+\textbf{conditional p.d.f.} of \(X\) given that \(Y = y\) is the same as the
+\textbf{marginal p.d.f.} of \(X\) for every \(Y\) such that \(f_Y(y)> 0\).
+
+\marker{Bivariate Normal Distribution} Random variables \(X\), \(Y\) have a
+\textbf{bivariate normal distribution} if, for constants \(\mu_x, \mu_y,
+\sigma_x, \sigma_y> 0\), \(-1 < \rho < 1\), there \textbf{joint density
+function} is given, for all \(-\infty < x, y < \infty\), by
+\[f_{X, Y}(x, y) := \dfrac{1}{2\pi\sigma_x\sigma_y\sqrt{1-\rho^2}} \times
+e^\text{exponent}\]
+where exponent is:
+\[-\dfrac{\left[\left(\dfrac{x-\mu_x}{\sigma_x}\right)^2 +
+\left(\dfrac{y-\mu_y}{\sigma_y}\right)^2 -
+2\rho\dfrac{(x-\mu_x)(y-\mu_y)}{\sigma_x\sigma_y}.\right]}{2(1-p^2)}.\]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
