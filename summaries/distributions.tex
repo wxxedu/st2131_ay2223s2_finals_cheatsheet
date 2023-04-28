@@ -1,0 +1,406 @@
+\marker{Bernoulli Random Variable} \(\operatorname{Be}\left(p\right)\), define 
+\begin{equation*}
+  X = \begin{cases}1, &\text{if it is a success};\\ 
+  0 &\text{if it is a failure.}\end{cases}
+\end{equation*}
+\begin{multicols}{2}
+\begin{itemize}
+\item \(P(X=1) = p\); 
+\item \(P(X=0) = 1-p\);
+\item \(E(X) = p\);
+\item \(\operatorname{Var}\left(X\right)=p(1-p)\).
+\end{itemize} 
+\end{multicols}
+
+\marker{Binomial Random Variable} \(\operatorname{Bin}\left(n,p\right)\), define
+\(X\) as \textbf{number of successes} in \(n\)
+\(\operatorname{Bernoulli}\left(p\right)\) trials.
+
+Therefore, \(X\) takes values \(0, 1, 2, \cdots, n\). 
+\begin{itemize}
+  \item \(P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}\);
+\end{itemize}
+\begin{multicols}{2}
+\begin{itemize}
+  \item \(E(X)=np\);
+  \item \(\operatorname{Var}\left(X\right)=np(1-p)\);
+\end{itemize}
+\end{multicols}
+
+\marker{Sum of Binomial (same prob)} \(X\sim
+\operatorname{Bin}\left(n,p\right)\), \(Y\sim
+\operatorname{Bin}\left(m,p\right)\), where \(X\), \(Y\) are independent. Then,
+the \textbf{p.m.f.} of \(X + Y\):
+\begin{align*}
+  P(X + Y = k) &= \sum\limits_{i=0}^{k}P(X=i, Y = k-i) \\ 
+               &= \binom{n+m}{k}p^k(1-p)^{n+m-k}
+\end{align*}
+The sum of 2 indepndent binomial random variables with the \textbf{same success
+probability}, \(p\), is still binomial, with parameters \(n+m\) and \(p\).
+
+
+\subsection{Approximation of Binomial Distribution}
+
+\marker{Theorem 5.1 (De Moivre-Laplace Theorem)} Suppose that \(X \sim
+\operatorname{Bin}\left(n,p\right)\). Then, for any \(a < b\), we have
+\[P\left(a\leq \dfrac{X-np}{\sqrt{npa}} \leq b\right) \rightarrow \Phi(b) -
+\Phi(a)\]
+as \(n \rightarrow \infty\), where \(q = 1-p\) and \(\Phi(z) = P(Z \leq z)\) 
+with \(Z \sim \operatorname{N}\left(0,1\right)\). That is, 
+\[\operatorname{Bin}\left(n,p\right)\approx
+\operatorname{N}\left(np,npq\right).\]
+Equivalently, \(\dfrac{X-np}{\sqrt{npq}}\approx Z\) where \(Z \sim
+\operatorname{N}\left(0,1\right)\).
+
+Generally good for values of \(n\) satisfying \(npq \geq 10\).
+
+\marker{Continuity Correction} If \(X \sim \operatorname{Bin}\left(n,p\right)\),
+then 
+\begin{align*}
+P(X=k) &= P(k-0.5 < X < k + 0.5) \\
+P(X \geq k) &= P(X \geq k- 0.5) \\ 
+P(X \leq k) &= P(X \leq k + 0.5)
+\end{align*}
+
+\marker{Poisson Approximation to Binomial} Works when \(n\) is large and \(p\) is
+small. \textbf{As a working rule, $p < 0.1$ and set $\lambda = np$}.
+
+
+
+\marker{Geometric Random Variable} \(\operatorname{Geom}\left(p\right)\), 
+define \(X\) as \textbf{number of trials} until the first success in a 
+sequence of independent \(\operatorname{Bernoulli}\left(p\right)\) trials.
+\begin{itemize}
+  \item \(P(X=k) = pq^{k-1}\);
+\end{itemize}
+\begin{multicols}{2}
+\begin{itemize}
+  \item \(E(X)=\dfrac{1}{p}\);
+  \item \(\operatorname{Var}\left(X\right)=\dfrac{1 - p}{p^2}\);
+\end{itemize}
+\end{multicols}
+
+
+\marker{Alternative Geometric Distribution}: Let \(X'\) be the 
+\textbf{number of failures} in the \(\operatorname{Bernoulli}\left(p\right)\)
+trials in order to obtain the first success. Here, 
+\begin{equation*}
+  X = X' + 1
+\end{equation*}
+\begin{itemize}
+  \item \(P(X'=k) = pq^{k}\);
+\end{itemize}
+\begin{multicols}{2}
+\begin{itemize}
+  \item \(E(X')=\dfrac{1-p}{p}\);
+  \item \(\operatorname{Var}\left(X'\right)=\dfrac{1 - p}{p^2}\);
+\end{itemize}
+\end{multicols}
+
+\marker{Negative Binomial Random Varaible} \(\operatorname{NB}
+\left(r,p\right)\), define \(X\) to be \textbf{number of
+\(\operatorname{Bernoulli}\left(p\right)\) trials} required to obtain 
+\textbf{$r$ successes}. For \(k \geq r\), we have:
+\begin{itemize}
+  \item \(P(X=k) = \binom{k-1}{r-1}p^r(1-p)^{k-r}\);
+\end{itemize}
+\begin{multicols}{2}
+\begin{itemize}
+  \item \(E(X)=\dfrac{r}{p}\);
+  \item \(\operatorname{Var}\left(X\right)=\dfrac{r(1-p)}{p^2}\);
+\end{itemize}
+\end{multicols}
+
+\marker{Remark}: \(\operatorname{Geom}\left(p\right)=
+\operatorname{NB}\left(1,p\right).\)
+
+\subsection{Poisson Random Variable}
+
+\marker{Poisson}: A random variable \(X\) is said to have a \textbf{Poisson} 
+distribution with parameter \(\lambda\) if \(X\) takes values 
+\(0, 1, 2, \cdots\) with probabilities given as:
+\begin{equation*}
+  P(X = k) = \dfrac{e^{-\lambda}\lambda^k}{k!}, \quad \text{for }k=0, 1, 2, 
+  \cdots
+\end{equation*}
+\begin{multicols}{2}
+\begin{itemize}
+  \item \(E(X)=\lambda\);
+  \item \(\operatorname{Var}\left(X\right)=\lambda\).
+\end{itemize}
+\end{multicols}
+When \(n\) is large and \(\lambda\) is moderate, we can use \textbf{poisson} to
+approximate \textbf{binomial}:
+\begin{equation*}
+  \operatorname{Bin}\left(n,p\right) \approx \operatorname{Poisson}
+  \left(np\right).
+\end{equation*}
+I.e. \(P(X = k)\approx e^{-\lambda}\dfrac{\lambda^k}{k!}\).
+
+\marker{Examples obeying Poisson distribution}:
+\begin{itemize}
+  \item Number of misprints on a page;
+  \item Number of people in a community living to 100 years;
+  \item Number of wrong telephone numbers that are dialled in a day;
+  \item Number of people entering a store on a given day;
+  \item Number of particles emitted by a radioactive source.
+\end{itemize}
+These are approximately Poisson \textbf{because of the Poisson approximation 
+to the binomial distribution.}
+
+\subsection{Hypergeometric Random Variable}
+
+\marker{Hypergeometric}: A random variable \(X\) is said to have a
+\textbf{hypergeometric} distribution with parameters \(N\), \(m\) and \(n\) if
+\(X\) takes values \(0, 1, 2, \cdots, n\) with probabilities given as:
+\begin{equation*}
+  P(X = x) = \dfrac{\binom{m}{x}\binom{N-m}{n-x}}{\binom{N}{n}}
+\end{equation*}
+for \(x = 0, 1, \cdots, \min(m, n)\).
+\begin{itemize}
+  \item \(\operatorname{E}\left(X\right)=\dfrac{nm}{N}\);
+  \item \(\operatorname{Var}\left(X\right)=\dfrac{nm}{N}\left[
+    \dfrac{(n-1)(m-1)}{N-1}+1 - \dfrac{nm}{N}
+  \right]\).
+\end{itemize}
+
+\marker{Example}: Suppose that we have $N$ balls, of which $m$ are red and 
+$N-m$ are blue. We choose $n$ of these balls, \textbf{without replacement},
+and define $X$ to be the number of red balls chosen. Then $X$ is a
+\textbf{hypergeometric} random variable, with 
+\(P(X = x) = {\binom{m}{x}\binom{N-m}{n-x}} / {\binom{N}{n}}\).
+
+
+\marker{Uniform Distribution} A continuous random variable \(X\) is said to
+have a
+\textbf{uniform distribution} on the interval \((a, b)\) if its p.d.f. is given
+by
+\[f_X(x) = \begin{cases}
+  \dfrac{1}{b-a}, & a < x < b \\
+  0, & \text{otherwise}.
+\end{cases}\]
+Then, \[F_X(x) = \begin{cases}
+  0, & x < a \\
+  \dfrac{x-a}{b-a}, & a \leq x < b \\
+  1, & b \leq x.
+\end{cases}\]
+We have:
+\begin{multicols}{2}
+  \begin{itemize}
+    \item \(E(X) = \dfrac{a+b}{2}\);
+    \item \(\operatorname{Var}(X) = \dfrac{(b-a)^2}{12}\).
+  \end{itemize}
+\end{multicols}
+
+\subsection{Normal Distribution}
+
+\marker{Definition} A continuous random variable \(X\) is said to have a
+\textbf{normal distribution} with parameters \(\mu\) and \(\sigma^2\) if its
+p.d.f. is given by
+\[f_X(x) = \dfrac{1}{\sqrt{2\pi}\sigma}e^{-{(x-\mu)^2}/{2\sigma^2}},\]
+for \(-\infty < x < \infty\). We write \(X \sim N(\mu, \sigma^2)\).
+
+\marker{Standard Normal} A continuous random variable \(Z\) is said to have a
+\textbf{standard normal distribution} if its p.d.f. is given by
+\[f_Z(z) = \dfrac{1}{\sqrt{2\pi}}e^{-{z^2}/{2}},\]
+for \(-\infty < z < \infty\). We write \(Z \sim N(0, 1)\).
+
+If \(X \sim N(\mu, \sigma^2)\), then
+\(Z = \dfrac{X-\mu}{\sigma} \sim N(0, 1),\)
+and 
+\begin{align*}
+P(a < Y \leq b) &= P\left(\dfrac{a-\mu}{\sigma}< Z \leq
+  \dfrac{b-\mu}{\sigma}\right) \\ 
+                &= \Phi\left(\dfrac{b-\mu}{\sigma}\right) - 
+                \Phi\left(\dfrac{a-\mu}{\sigma}\right).
+\end{align*}
+\marker{Properties of Normal Distribution}
+\begin{itemize}
+  \item \(P(Z \geq 0) = P(Z \leq 0) = \dfrac{1}{2}\);
+  \item \(-Z \sim N(0, 1)\);
+  \item \(P(Z \leq x) = 1 - P(Z > x)\) for \(-\infty < x < \infty\);
+  \item \(P(Z \leq -x) = P(Z \geq x)\) for \(-\infty < x < \infty\);
+  \item if \(Y \sim N(\mu, \sigma^2)\), then \(X := (Y-\mu)/\sigma \sim N(0,
+    1)\);
+  \item if \(X \sim N(0, 1)\), then \(Y := aX + b \sim N(b, a^2)\).
+\end{itemize}
+
+\marker{Expectation and Variance}
+\begin{itemize}
+  \item if \(Y \sim N(\mu, \sigma^2)\), then \(E(Y) = \mu\) and \(\operatorname{Var}(Y) =
+    \sigma^2\);
+  \item if \(Z\sim N(0,1)\),  then \(E(Z)=0\) and \(\operatorname{Var}(Z)=1\).
+\end{itemize}
+
+\marker{Sum of Normal} If 
+\(X_i, i = 1, \cdots, n\) are independent random variables that are normally
+distributed with respective parameters \(\mu_i\), \(\sigma_i^2\), \(i = 1,
+\cdots, n\) then 
+\[\sum\limits_{i=1}^{n}X_i \sim N\left(\sum\limits_{i=1}^{n}\mu_i,
+\sum\limits_{i=1}^{n}\sigma_i^2\right).\]
+
+\subsection{Expontential Distribution}
+
+\marker{Definition} A continuous random variable \(X\) is said
+to have an \textbf{exponential distribution} with parameter 
+\(\lambda > 0\) if its \textbf{probability density function} is given by
+\[f_X(x) = \begin{cases}
+  \lambda e^{-\lambda x}, & x > 0 \\
+  0, & x \leq 0.
+\end{cases}\]
+Its \textbf{distribution function} is given by
+\[F_X(x) = \begin{cases}
+  1 - e^{-\lambda x}, & x > 0 \\
+  0, & x \leq 0.
+\end{cases}\]
+\begin{itemize}
+  \item \textbf{Memoryless Property}: 
+    \[P(X > s + t | X > s) = P(X > t), \quad s, t > 0.\]
+\end{itemize}
+\begin{multicols}{2}
+  \begin{itemize}
+    \item \(E(X) = \dfrac{1}{\lambda}\);
+    \item \(\operatorname{Var}(X) = \dfrac{1}{\lambda^2}\).
+  \end{itemize} 
+\end{multicols}
+
+\subsection{Some Other Distributions}
+
+\marker{Gamma} A continuous random variable \(X\) is said to have a
+\textbf{gamma distribution} with parameters \(\alpha\) and \(\lambda\), where
+\(\alpha > 0\) and \(\lambda > 0\), if its \textbf{probability density function}
+is given by
+\[f_X(x) = \begin{cases}
+  \dfrac{\lambda^{\alpha}x^{\alpha-1}e^{-\lambda x}}{\Gamma(\alpha)}, & x > 0 \\
+  0, & x \leq 0,
+\end{cases}\]
+where \(\Gamma(\alpha) = \int_0^{\infty} x^{\alpha-1}e^{-x}dx\).
+Its \textbf{distribution function} is given by
+\[F_X(x) = \begin{cases}
+  \dfrac{\gamma(\alpha, \lambda x)}{\Gamma(\alpha)}, & x > 0 \\
+  0, & x \leq 0.
+\end{cases}\]
+\begin{multicols}{2}
+  \begin{itemize}
+    \item \(E(X) = \dfrac{\alpha}{\lambda}\);
+    \item \(\operatorname{Var}(X) = \dfrac{\alpha}{\lambda^2}\).
+    \item \(\Gamma(1) = \int_{0}^{\infty}e^{-y}\ \mathrm{d}y = 1.\)
+    \item \(\Gamma(\alpha) = (\alpha - 1)\Gamma(\alpha - 1)\).
+    \item \(\Gamma(n) = (n-1)!\) for \(n \in \mathbb{N}\).
+  \end{itemize}
+\end{multicols}
+
+\marker{Sum of Gamma} 
+\(X\sim \operatorname{Gamma}\left(\alpha,\lambda\right)\), \(Y \sim
+\operatorname{Gamma}\left(\lambda\right)\), \tf 
+\[X + Y \sim \operatorname{Gamma}\left(\alpha+\beta, \lambda\right).\]
+If \(X \equiv
+\operatorname{Poisson}\left(\lambda\right)\), \(Y \sim
+\operatorname{Poisson}\left(\mu\right)\), and \(X\) and \(Y\) are independent,
+then the \textbf{p.m.f.} of \(X + Y\):
+\begin{align*}
+  P(X + Y = n) &= \sum\limits_{k=0}^{n}P(X = k, Y = n-k) \\ 
+               &= \dfrac{\exp[-(\lambda + \mu)](\lambda + \mu)^n}{n!}
+\end{align*}
+The sum of two independent Poisson random variables is \textbf{still Poisson}, 
+the mean is the \textbf{sum of the means}.
+
+\marker{Weibull} A continuous random variable \(X\) is said to have a
+\textbf{Weibull distribution} with parameters \(\alpha\) and \(\lambda\), where
+\(\alpha > 0\) and \(\lambda > 0\), if its \textbf{probability density function}
+is given by \(f_X(x) =\)
+\[\begin{cases}
+  \dfrac{\beta}{\alpha}\left(\dfrac{x-v}{\alpha}\right)^{\beta -
+    1}\operatorname{exp}\left[-\left(\dfrac{x-v}{\alpha}\right)^\beta \right],
+    & x > v \\
+  0, & x \leq v,
+\end{cases}\]
+If \(X \sim \operatorname{W}\left(v,\alpha,\beta\right)\), then 
+\begin{itemize}
+  \item \(\operatorname{E}(X) = v + \alpha\Gamma\left(1 + \dfrac{1}{\beta}\right)\);
+  \item \(\operatorname{Var}(X) = \alpha^2\left[\Gamma\left(1 + \dfrac{2}{\beta}\right) -
+    \left(\Gamma\left(1 + \dfrac{1}{\beta}\right)\right)^2\right]\).
+\end{itemize}
+
+\marker{Cauchy} A continuous random variable \(X\) is said to have a
+\textbf{Cauchy distribution} with parameters \(\alpha\) and \(\beta\), where
+\(\theta \in \mathbb{R}\) and \(\alpha > 0\), if its \textbf{probability density
+function} is given by
+\[f_X(x) = \dfrac{1}{\pi\alpha\left[1 + \left(\dfrac{x-\theta}{\alpha}\right)^2\right]},\]
+\begin{itemize}
+  \item \(E(X)\) does not exist;
+  \item \(\operatorname{Var}(X)\) does not exist.
+\end{itemize}
+
+\marker{Beta} A continuous random variable \(X\) is said to have a
+\textbf{beta distribution} with parameters \(\alpha\) and \(\beta\), where
+\(\alpha > 0\) and \(\beta > 0\), if its \textbf{probability density function}
+is given by
+\[f_X(x) = \begin{cases}
+  \dfrac{1}{B(a,b)}x^{\alpha-1}(1-x)^{\beta-1},
+  & 0 < x < 1 \\
+  0, & \text{otherwise}.
+\end{cases}\]
+where \(B(\alpha, \beta) = \int_0^1 x^{\alpha-1}(1-x)^{\beta-1}dx\), is the 
+\textbf{Beta function}. 
+\begin{itemize}
+  \item \(E(X) = \dfrac{\alpha}{\alpha + \beta}\);
+  \item \(\operatorname{Var}(X) = \dfrac{\alpha\beta}{(\alpha + \beta)^2(\alpha +
+    \beta + 1)}\).
+\end{itemize}
+\marker{Beta Function} \[\operatorname{B}\left(\alpha,\beta\right) =
+\dfrac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha + \beta)} = \int_{0}^{1}\
+(1-u)^{\alpha-1}u^{\beta - 1}\mathrm{d}u.\]
+
+\marker{$\chi^2$-Distribution} Let \(X_1, X_2, \ldots, X_n\) be independent
+standard normal random variables. Then, the random variable
+\[Q = \sum_{i=1}^{n}X_i^2\]
+has a \textbf{chi-squared distribution} with \(n\) degrees of freedom, denoted
+by \(Q \sim \chi^2(n)\).
+The \textbf{p.d.f.} of \(Q\) is given by
+\[f_Q(q) = \begin{cases}
+  \dfrac{1}{2^{n/2}\Gamma(n/2)}q^{n/2-1}e^{-q/2}, & q > 0 \\
+  0, & q \leq 0.
+\end{cases}\]
+The \textbf{d.f.} of \(Q\) is given by
+\[F_Q(q) = \begin{cases}
+  \dfrac{\gamma(n/2,q/2)}{\Gamma(n/2)}, & q > 0 \\
+  0, & q \leq 0,
+\end{cases}\]
+where \(\gamma = \int_{0}^{q/2}t^{n/2-1}e^{-t}\,dt\) and
+\(\Gamma = \int_{0}^{\infty}t^{n/2-1}e^{-t}\,dt\).
+\begin{multicols}{2} 
+\begin{itemize}
+  \item \(E(Q) = n\);
+  \item \(\operatorname{Var}(Q) = 2n\).
+\end{itemize}
+\end{multicols}
+
+\marker{Log-Normal Distribution} Let $Z$ be a standard normal random variable.
+Then, the random variable $X = e^{\mu + \sigma Z}$ has a \textbf{log-normal
+distribution} with parameters $\mu$ and $\sigma$, denoted by $X \sim
+\operatorname{LN}(\mu, \sigma)$. The \textbf{p.d.f.} of $X$ is given by
+\[f_X(x) = \begin{cases}
+  \dfrac{1}{x\sigma\sqrt{2\pi}}\exp\left[-\frac{1}{2\sigma^2}(\ln x - \mu)^2 
+  \right], & x > 0 \\
+  0, & x \leq 0.
+\end{cases}\]
+The \textbf{d.f.} of $X$ is given by
+\[F_X(x) = \begin{cases}
+  \dfrac{1}{2} + \dfrac{1}{2}\operatorname{erf}\left(\dfrac{\ln x - \mu}{\sigma\sqrt{2}}\right), & x > 0 \\
+  0, & x \leq 0.
+\end{cases}\]
+where \(\operatorname{erf}(z) = \dfrac{2}{\sqrt{\pi}}\int_{0}^{z}e^{-t^2}\,dt\)
+is the \textbf{error function}.
+
+
+\marker{Bivariate Normal Distribution} Random variables \(X\), \(Y\) have a
+\textbf{bivariate normal distribution} if, for constants \(\mu_x, \mu_y,
+\sigma_x, \sigma_y> 0\), \(-1 < \rho < 1\), there \textbf{joint density
+function} is given, for all \(-\infty < x, y < \infty\), by
+\[f_{X, Y}(x, y) := \dfrac{1}{2\pi\sigma_x\sigma_y\sqrt{1-\rho^2}} \times
+e^\text{exponent}\]
+where exponent is:
+\[-\dfrac{\left[\left(\dfrac{x-\mu_x}{\sigma_x}\right)^2 +
+\left(\dfrac{y-\mu_y}{\sigma_y}\right)^2 -
+2\rho\dfrac{(x-\mu_x)(y-\mu_y)}{\sigma_x\sigma_y}.\right]}{2(1-p^2)}.\]

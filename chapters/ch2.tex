@@ -1,0 +1,52 @@
+\marker{Set Ops} Laws:
+\begin{itemize}
+  \item \textbf{Commutative} \(EF = FE\), \(E\cup F = F\cup E\);
+  \item \textbf{Associative} \((EF)G = E(FG)\), \((E\cup F)\cup G = E\cup
+    (F\cup G)\);
+  \item \textbf{Distributive} \(E(F\cup G) = EF\cup EG\), \(E\cap(F\cup G) =
+    (E\cap F)\cup(E\cap G)\);
+  \item \textbf{DeMorgan} \((\bigcup_{i=1}^n E_i)^c = \bigcap_{i=1}^n E_i^c\),
+    \((\bigcap_{i=1}^n E_i)^c = \bigcup_{i=1}^n E_i^c\).
+\end{itemize}
+
+\marker{Axioms of Probability}  
+\begin{itemize}
+  \item \(0 \leq P(E)\leq 1\); 
+  \item \(S:=\text{sample space}\) \tf \(P(S) = 1\); 
+  \item \(E_1, E_2, \cdots\) disjoint \tf \(P\left(\bigcup_{i=1}^\infty
+      E_i\right) = \sum_{i=1}^\infty P(E_i)\).
+\end{itemize}
+
+\marker{Properties of Probability}
+\begin{multicols}{2}
+\begin{itemize}
+  \item \(P(\emptyset) = 0\);
+  \item \(P\left(\bigcup_{i=1}^n E_i\right) = \sum\limits_{i=1}^{n}P(E_i)\);
+  \item \(P(E^c)=1-P(E)\)
+  \item \(P(A) \leq P(B)\) if \(A \subseteq B\);
+  \item \( \begin{aligned} P(A\cup B) =& P(A) + P(B) \\ 
+           &- P(A\cap B)\end{aligned} \)
+\end{itemize} 
+\end{multicols}
+
+\marker{Inclusion Exclusion} 
+\begin{align*}
+   &P(E_1\cup E_2\cup \cdots \cup E_n) \\
+  =&\sum\limits_{i=1}^{n}P(E_i)-\sum\limits_{\mathclap{i\leq i_1 < i_2 \leq n}}
+  P(E_{i_1}\cap E_{i_2}) + \cdots + (-1)^{r+1} \\
+   &+ (-1)^{n-1}P(E_1\cap E_2\cap \cdots \cap E_n)
+\end{align*}
+
+\marker{\(\nearrow\), \(\searrow\) Sequences} \(\{E_n\}\) is
+\textbf{increasing} if \(E_1 \subseteq E_2 \subseteq \cdots\),
+\textbf{decreasing} if \(E_1 \supseteq E_2 \supseteq \cdots\).
+\begin{multicols}{2}
+\begin{itemize}
+  \item \(\{E_n\} \nearrow\) \tf \(\lim\limits_{\mathclap{n\rightarrow \infty}}E_n =
+    \bigcup\limits_{i=1}^{\infty}E_i\);
+  \item \(\{E_n\} \searrow\) \tf \(\lim\limits_{\mathclap{n\rightarrow \infty}}E_n =
+    \bigcap\limits_{i=1}^{\infty}E_i\).
+\end{itemize}
+\end{multicols}
+
+

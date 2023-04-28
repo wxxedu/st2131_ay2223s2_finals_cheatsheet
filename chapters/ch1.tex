@@ -1,0 +1,52 @@
+\marker{Basic Principle of Counting}: \(A\): \(m\) outcomes, \(B\): \(n\)
+outcomes, \tf \(A\cap B\): \(mn\) outcomes.
+\begin{itemize}
+  \item \textbf{Generalized}: \(A_i\): \(i\) outcomes \tf \(\smallprod n_i\)
+    outcomes.
+\end{itemize}
+
+\marker{Permutations} \(n\) distinct objs \tf \(n!\) permutations.
+\begin{itemize}
+  \item \textbf{Generalized}: \(n = \sum n_i\), \(n_i\) distinct \tf 
+    \({n!}/{\left(\smallprod n_i!\right)}\) permutations.
+\end{itemize}
+
+\marker{Combinations} \(n\) distinct choose \(r\) \tf 
+\(\binom{n}{r}=n!/r!(n-r)!\).
+\begin{multicols}{2}
+\begin{itemize}
+  \item \(r < 0\) or \(r > n\) \tf \(\binom{n}{r} = 0\);
+  \item \(\binom{n}{r}=\binom{n-1}{r-1}+\binom{n-1}{r}\).
+\end{itemize}
+\end{multicols}
+
+\marker{Binomial Thm} \((x+y)^n = \sum_{k=0}^n \binom{n}{k}x^ky^{n-k}\).
+\begin{multicols}{2}
+\begin{itemize}
+  \item \(\sum\limits_{k=0}^{n}\binom{n}{k}=2^n\);
+  \item \(\sum\limits_{k=0}^{n}(-1)^k\binom{n}{k}=0\), \(n \geq 1\);
+\end{itemize} 
+\end{multicols}
+\begin{itemize}
+  \item \(\binom{n}{0}+\binom{n}{2}+\cdots =
+    \binom{n}{1}+\binom{n}{3}+\cdots\).
+\end{itemize}
+
+\marker{Multinomial Coef} \(n = \smallsum n_i\), \(n_i\) distinct, choose \(r\)
+groups \tf \(\binom{n}{n_1, n_2, \cdots, n_r} = {n!}/{\left(\smallprod
+  n_i!\right)}\).
+\begin{itemize}
+  \item \(\left(\sum\limits_{i=1}^{r}x_i\right)=\sum_{n_1 + n_2 + \cdots + n_r =
+    n}\binom{n}{n_1,n_2,\cdots,n_r}\prod\limits_{i=1}^{r}x_i^{n_i}\)
+\end{itemize}
+
+\marker{Integer Sols} Solve \(x_1 + x_2 + \cdots + x_r = n\), (\(x_i > 0\),
+\(\forall i\))
+\begin{multicols}{2}
+\begin{itemize}
+  \item \(\binom{n-1}{r-1}\) positive int sols;
+  \item \(\binom{n+r-1}{r-1}\) non-negative int sols.
+\end{itemize}
+\end{multicols}
+
+

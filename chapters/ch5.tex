@@ -1,0 +1,51 @@
+\marker{Continuous Variable \& p.d.f} \(X\) is \textbf{continuous} if $\exists$
+nonnegative \(f_X\) s.t. $\forall x \in \mathbb{R}$,  
+\(P(a < X \leq b) = \int_a^b f_X(x)dx,\)
+for \(-\infty < a < b < +\infty\). 
+\begin{multicols}{2}
+\begin{itemize}
+  \item \(F_X(x) = \int_{-\infty}^{x}f_X(t)\ \mathrm{d}t\);
+  \item \(f_X(x) = \dfrac{\partial{d}}{\partial{d}x}F_X(x)\).
+\end{itemize}
+\end{multicols}
+\begin{multicols}{2}
+\begin{itemize}
+  \item \(P(X = x) = 0\);
+  \item \textbf{d.f.} \(F_X(x)\) is \textbf{continuous}.
+\end{itemize}
+\end{multicols}
+\begin{itemize}
+  \item \(\forall a, b \in (-\infty, \infty)\), \(P(a \leq X \leq b)\) \(=\)
+    \(P(a < X \leq b)\) \(=\) \(P(a \leq X < b)\) \(=\) \(P(a < X < b)\).
+\end{itemize}
+
+\marker{Determining constant}: 
+\(\int_{-\infty}^{\infty}f_X(x)\ \mathrm{d}x = 1\).
+
+\marker{Expectation}: \(E(X) = \int_{-\infty}^{\infty}xf_X(x)\ \mathrm{d}x,\).
+
+\marker{Variance}: \(\operatorname{Var}(X) =
+\int_{-\infty}^{\infty}(x-E(X))^2f_X(x)\ \mathrm{d}x\).
+
+\marker{Functions of Expectations}: 
+\begin{multicols}{2}[\setlength\columnsep{0pt}]
+\begin{itemize}
+  \item \(E(g(X)) = \int_{-\infty}^{\infty}g(x)f_X(x)\mathrm{d}x\)
+  \item \(E(aX + b)\) = \(aE(X) + b\)
+  \item \(\operatorname{Var}(X) = E(X^2) - [E(X)]^2\)
+\end{itemize}
+\end{multicols}
+
+\marker{Tail Sum Formula} given \(X\) \textbf{nonnegative} \tf
+\[E(X) = \int_0^{\infty}P(X > x)\ \mathrm{d}x.\]
+
+\marker{$Y$ monotonic, differentiable on $X$} Let \(g(x)\) be
+\textbf{strictly monotonic}, \textbf{differentiable} function of \(X\). \tf 
+The \textbf{p.d.f.} of \(Y := g(X)\):
+\[f_Y(y) = \begin{cases}
+  f_X(g^{-1}(y))\left|\dfrac{d}{dy}g^{-1}(y)\right|, & \text{if } y \in
+  g(\mathcal{R}_X) \\
+  0, & \text{otherwise}.
+\end{cases}\]
+where \(g^{-1}\) is the inverse function of \(g\).
+

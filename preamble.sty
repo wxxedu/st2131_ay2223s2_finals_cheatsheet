@@ -1,0 +1,95 @@
+\ProvidesPackage{preamble}
+
+\usepackage[margin=1cm]{geometry}
+\geometry{a3paper}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{mathtools}
+
+% subfiles 
+\usepackage{subfiles}
+
+% No Page Number
+\pagenumbering{gobble}
+% No Indent 
+\setlength\parindent{0pt}
+% Line Spacing to 1 
+\renewcommand{\baselinestretch}{1.0}
+% Remove line spacing before and after sections 
+\usepackage{titlesec}
+\titlespacing\section{0pt}{0pt plus 0pt minus 0pt}{0pt plus 0pt minus 0pt}
+\titlespacing\subsection{0pt}{0pt plus 0pt minus 0pt}{0pt plus 0pt minus 0pt}
+\titlespacing\subsubsection{0pt}{0pt plus 0pt minus 0pt}{0pt plus 0pt minus 0pt}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\AtBeginEnvironment{equation*}
+{\setlength{\abovedisplayskip}{0pt}\setlength{\belowdisplayskip}{0pt}\color{violet}}
+\AtBeginEnvironment{gather*}
+{\setlength{\abovedisplayskip}{0pt}\setlength{\belowdisplayskip}{0pt}\color{violet}}
+\AtBeginEnvironment{align*}
+{\setlength{\abovedisplayskip}{0pt}\setlength{\belowdisplayskip}{0pt}\color{violet}}
+
+% make sum, intersection, union, integral bigger
+\let\smallsum\sum
+% \renewcommand{\sum}{\displaystyle\smallsum}
+\let\smallprod\prod
+% \renewcommand{\prod}{\displaystyle\smallprod}
+\let\smallint\int
+% \renewcommand{\int}{\displaystyle\smallint}
+\let\smallbigcup\bigcup
+% \renewcommand{\bigcup}{\displaystyle\smallbigcup}
+\let\smallbigcup\bigcap
+% \renewcommand{\bigcap}{\displaystyle\smallbigcup}
+
+% Some other symbol
+\newcommand{\tf}{$\Rightarrow$ }
+
+% remove space before multicol 
+
+\setlength{\multicolsep}{0pt}
+% \setlength{\columnseprule}{0.2pt}
+% \def\columnseprulecolor{\color{magenta}}
+
+% reduce list spacing
+\usepackage{enumitem}
+\setlist{nosep}
+
+% Colors
+
+
+% Color tweaks
+
+\newcommand{\marker}[1]{{\color{magenta}{\textbf{#1}}}}
+
+% set section color to violet 
+\let\oldsection\section
+\renewcommand{\section}[1]{\oldsection{\color{violet}{#1}}}
+\renewcommand{\thesection}{\color{violet}{\arabic{section}}}
+
+\let\oldsubsection\subsection
+\renewcommand{\subsection}[1]{\oldsubsection{\color{purple}{#1}}}
+\renewcommand{\thesubsection}{\color{purple}{\arabic{section}.\arabic{subsection}}}
+
+% Change color of equation to violet 
+\let\oldinlinemathstart\(
+\renewcommand{\(}{\begingroup\color{violet}\oldinlinemathstart}
+\let\oldinlinemathend\)
+\renewcommand{\)}{\oldinlinemathend\endgroup}
+
+% Itemize 
+
+\usepackage{enumitem}
+\setlist[itemize]{
+  before=\small,
+  label=\tiny\textcolor{magenta}{\textbullet},
+  leftmargin=*,labelsep=0.3em
+}
+\setlist[enumerate]{
+  before=\small,
+  label=\small\textcolor{magenta}{\arabic*.},
+  leftmargin=*,labelsep=0.3em
+}
+

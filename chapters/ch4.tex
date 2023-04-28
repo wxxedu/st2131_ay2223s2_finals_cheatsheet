@@ -1,0 +1,72 @@
+\marker{Discrete}: \textbf{finite} or \textbf{countably infinite}
+
+\marker{Probability Mass Function (p.m.f.)} \(p_X(x)\):
+\begin{equation*}
+p_X(x) = \begin{cases}P(X=x), & \text{if }x = x_1, x_2, \cdots \\ 0, & 
+\text{otherwise}.\end{cases}
+\end{equation*}
+Note that \(\sum\limits_{i=1}^{\infty}p_X(x_i) = 1\).
+
+\marker{Cumulative Distribution Function (c.d.f.)} \(F_X(x)\):
+\[F_X(x) = P(X \leq x)\]
+
+\marker{Expectation}: \(X\) \textbf{discrete} with \textbf{p.m.f.}
+\(p_X\) \tf \textbf{expectation}
+\begin{equation*}
+  E(X) := \sum\limits_{x}xp_X(x).
+\end{equation*}
+\marker{Tail Sum Formula}: \(X \in \mathbb{Z}^+\) \tf
+\begin{equation*}
+E(X) = \sum\limits_{k=1}^{\infty}P(X \geq k) = 
+\sum\limits_{k=0}^{\infty}P(X > k).
+\end{equation*}
+
+\marker{Expectation of a Function}: \(X\) \textbf{discrete} with \(p_X\),
+\(g\):
+\begin{equation*}
+  E[g(X)] = \sum_i g(x_i)p_X(x_i) = \sum_x g(x)p_X(x).
+\end{equation*}
+\[E[aX + b] = aE(X)+ b.\]
+\marker{Variance} Let \(\mu := E(X)\), i.e. \textbf{mean} of \(X\),
+\[ \operatorname{Var}\left(X\right)=E[(X-\mu)^2]. \]
+\marker{Standard Deviation} 
+\(\sigma_X\) or \(\operatorname{SD}\left(X\right)\):
+\(\sigma_X := \sqrt{\operatorname{Var}\left(X\right)}.\)
+
+\marker{Scaling and shifting}: 
+\begin{multicols}{2}
+\begin{itemize}
+  \item \(\operatorname{Var}\left(aX+b\right)=a^2\operatorname{Var}
+    \left(X\right)\);
+  \item \(\operatorname{SD}\left(aX+b\right)=|a|\operatorname{SD}
+    \left(X\right)\).
+\end{itemize}
+\end{multicols}
+
+\marker{Properties of d.f.}:
+\begin{itemize}
+  \item \(F_X\) \textbf{non-decreasing} \tf \(F_X(a) \leq F_X(b)\);
+  \item \(\lim\limits_{b\rightarrow \infty}F_X(b) = 1\), and
+    \(\lim\limits_{b\rightarrow -\infty}F_X(b) = 0\);
+  \item \(F_X\) has \textbf{left limits}, i.e. \(\lim\limits_{x\rightarrow
+    b^-}F_X(x)\) exists for all \(b\in \mathbb{R}\);
+  \item \(F_X\) is \textbf{right continuous}, i.e. \(\forall b \in
+    \mathbb{R}\), \(\lim\limits_{x\rightarrow b^+}F_X(x) = F_X(b)\).
+\end{itemize}
+
+\marker{Useful Calculations}:
+\begin{enumerate}
+  \item \(P\) from \textbf{d.f.}:
+  \begin{itemize}
+    \item \(P(a<X\leq b)=F_X(b) - F_X(a)\);
+    \item \(P(X=a)=F_X(a)-F_X(a^-)\), where 
+      \(F_X(a^-)=\lim\limits_{x\rightarrow a^-}F_X(x)\).
+    \item \(\begin{aligned}
+        P(a \leq X \leq b) &= P(X = a) + P(a < X \leq b) \\ &= F_X(b)-F_X(a^-).
+    \end{aligned}\)
+  \end{itemize}
+  \item \(P\) from \textbf{PMF}: \(P(A) = \sum_{x\in A}p_X(x)\);
+  \item \textbf{p.m.f.} from \textbf{d.f.}: \(p_X(x) = F_X(x) - F_X(x^-)\);
+  \item \textbf{d.f.} from \textbf{p.m.f.}: \(F_X(x) = \sum_{y\leq x}p_X(y)\).
+\end{enumerate}
+

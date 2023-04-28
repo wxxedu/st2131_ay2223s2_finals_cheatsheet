@@ -1,0 +1,63 @@
+\marker{Conditional Probability} \(B\) happens given \(A\) happens:
+\[P(B|A) = {P(B\cap A)}/{P(A)}.\]
+\begin{itemize}
+  \item \(P(AB) := P(A\cap B) = P(A|B)P(B)\) = \(P(B|A)P(A)\);
+  \item \(P(A_1\cdots A_2)=P(A_1)P(A_2|A_1)\cdots
+    P(A_n|A_1A_2\cdots A_{n-1})\).
+\end{itemize}
+
+\marker{Bayes Formula}: \(P(B) = P(B|A)P(A) + P(B|A^c)P(A^c)\).
+\begin{itemize}
+  \item \textbf{Generalized}: \(A_i\)'s \textbf{partition} \(S\) \tf
+    \(P(B) = \sum\limits_{i=1}^{n}P(B|A_i)P(A_i)\).
+\end{itemize}
+\marker{Partition} \(A_i\) partition \(S\) iff
+\begin{multicols}{2}
+\begin{itemize}
+  \item \textbf{Exclusive}: \(A_i\cap A_j = \emptyset\);
+  \item \textbf{Exhaustive}: \(\bigcup\limits_{i=1}^{\infty}A_i =S\).
+\end{itemize}
+\end{multicols}
+
+\marker{Bayes' \(2^\text{nd}\) Formula}: \(A_i > 0\)'s partition \(S\) \tf 
+\[P(A_j|B) =
+{P(B|A_j)P(A_j)}\left/\left({\sum\limits_{i=1}^{n}P(B|A_i)P(A_i)}\right)\right..
+\]
+
+\marker{Odds of $A$} \(:=P(A) / P(A^c) = P(A) / [1-P(A)]\).
+
+\marker{Independent} \(A\) and \(B\) are \textbf{independent} if
+\(P(AB) = P(A)P(B)\), \textbf{dependent} otherwise.
+\begin{itemize}
+  \item \(A\), \(B\) independent \tf \(A\) and \(B^c\), \(A^c\) and \(B\),
+    \(A^c\) and \(B^c\) independent;
+  \item \(A\) independent of \(B\), \(C\) \textbf{DOES NOT IMPLY} \(A\)
+    independent of \(BC\).
+\end{itemize}
+
+\marker{Independence of 3 events}: satisfy the \textbf{ALL 4} conditions: 
+\begin{multicols}{2}
+\begin{itemize}
+  \item \(P(ABC) = P(A)P(B)P(C)\);
+  \item \(P(AB) = P(A)P(B)\);
+  \item \(P(AC) = P(A)P(C)\);
+  \item \(P(BC) = P(B)P(C)\).
+\end{itemize}
+\end{multicols}
+\begin{itemize}
+  \item \(A\), \(B\), \(C\) independent \tf \(A\) independent of any events
+    formed by \(B\) and \(C\).
+\end{itemize}
+
+\marker{Algebra of Cond Probability}: let \(P(A) > 0\), then
+\begin{multicols}{2}
+\begin{itemize}
+  \item \(\forall B\) \tf \(0 \leq P(B|A) \leq 1\);
+  \item \(P(S|A) = 1\);
+\end{itemize}
+\end{multicols}
+\begin{itemize}
+  \item \(B_i\)'s \textbf{mut exclusive} \tf \(P(\bigcup\limits_{i=1}^{\infty}B_i|A)
+    = \sum\limits_{i=1}^{\infty}P(B_i|A)\).
+\end{itemize}
+

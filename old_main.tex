@@ -1,0 +1,235 @@
+\section{Properties of Expectation}
+
+If \(a \leq X \leq b\), then \(a \leq E(X) \leq b\).
+
+\subsection{Expectation of Sums of Random Variables}
+
+\marker{Proposition 7.1}
+\begin{itemize}
+  \item If \(X\) and \(Y\) are \textbf{jointly discrete} with joint p.m.f
+    \(p_{X,Y}(x,y))\), then \[E[g(X, Y)] = \sum_y\sum_xg(x,y)p_{X,Y}(x,y).\]
+  \item If \(X\) and \(Y\) are \textbf{jointly continuous} with joint p.d.f 
+    \(f_{X,Y}(x,y)\), then \[E[g(X, Y)] =
+    \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}g(x,y)f_{X,Y}(x,y)
+  \,\mathrm{d}x\mathrm{d}y.\]
+\end{itemize}
+Consequently:
+\begin{itemize}
+  \item If \(g(x,y)\geq 0\) whenever \(p_{X,Y}(x,y) > 0\), then \(E[g(X, Y)]
+    \geq 0\).
+  \item \(E[g(X, Y) + h(X,Y)] = E[g(X, Y)] + E[h(X,Y)]\).
+  \item \(E[g(X) + h(Y)] = E[g(X)] + E[h(Y)]\).
+  \item \textbf{Monotone property}: if jointly distributed random variables
+    \(X\) and \(Y\) satisfy \(X \leq Y\), then \(E[X] \leq E[Y]\).
+  \item \textbf{Special case}: mean of sum is sum of means: \(E[X + Y] = E[X]
+    + E[Y]\).
+\end{itemize}
+
+\subsection{Covariance, Variance of Sums, and Correlation}
+
+\marker{Definition 7.2} The \textbf{covariance} of random variables \(X\) and
+\(Y\), denoted by \(\operatorname{Cov}\left(X,Y\right)\), is defined by 
+\[\operatorname{Cov}\left(X,Y\right)= E[(X-\mu_X)(Y-\mu_Y)],\]
+where \(\mu_X\) and \(\mu_Y\) denote the means of \(X\) and \(Y\) respectively.
+\begin{itemize}
+  \item If \(\operatorname{Cov}\left(X,Y\right)\neq 0\), then \(X\) and \(Y\)
+    are \textbf{correlated};
+  \item If \(\operatorname{Cov}\left(X,Y\right)= 0\), then \(X\) and \(Y\) are
+    \textbf{uncorrelated}.
+\end{itemize}
+Alternative formula:
+\[Cov(X, Y) = E(XY) - E(X)E(Y).\]
+
+\marker{Proposition 7.2} If \(X\) and \(Y\) are \textbf{independent}, then for
+any functions \(g, h: \mathbb{R}\rightarrow \mathbb{R}\), we have 
+\[E[g(X)h(Y)] = E[g(X)]E[h(Y)].\]
+
+\marker{Corollary 7.3} If \(X\) and \(Y\) are \textbf{independent}, then
+\(\operatorname{Cov}\left(X,Y\right)= 0\).
+
+\marker{Properties of Covariance}
+\begin{itemize}
+  \item \(\operatorname{Var}\left(X\right)=\operatorname{Cov}\left(X,X\right)\)
+  \item \(\operatorname{Cov}\left(X,Y\right)=\operatorname{Cov}\left(Y,
+    X\right)\)
+  \item \(\operatorname{Cov}\left(\sum\limits_{i=1}^{n}a_iX_i,
+    \sum\limits_{j=1}^m b_jY_j\right) =
+    \sum\limits_{i=1}^{n}\sum\limits_{j=1}^m a_ib_j\operatorname{Cov}\left(
+    X_i,Y_j\right).\)
+\end{itemize}
+
+\marker{Variance of a Sum}
+\[\operatorname{Var}\left(\sum\limits_{k=1}^{n}X_k\right) =
+\sum\limits_{k=1}^{n}\operatorname{Var}\left(X_k\right)+2\sum_{1 \leq i < j
+\leq n} \operatorname{Cov}\left(X_i,X_j\right)\]
+When \(X_1, X_2, \ldots, X_n\) are \textbf{independent}, we have
+\[\operatorname{Var}\left(\sum\limits_{k=1}^{n}X_k\right) =
+\sum\limits_{k=1}^{n}\operatorname{Var}\left(X_k\right).\]
+
+\marker{Correlation Coefficient} The \textbf{correlation coefficient} of
+random variables \(X\) and \(Y\), denoted by \(\rho_{X,Y}\), is defined by
+\[\rho_{X,Y} = \frac{\operatorname{Cov}\left(X,Y\right)}
+{\sqrt{\operatorname{Var}\left(X\right)\operatorname{Var}\left(Y\right)}}.\]
+
+\marker{Proposition 7.3} \(-1 \leq \rho_{X,Y} \leq 1\).
+
+\subsection{Conditional Expectation}
+
+\marker{Definition 7.3} 
+\begin{itemize}
+  \item If \(X\) and \(Y\) are \textbf{jointly distributed
+discrete} random variables, then 
+\[E\left[X\mid Y=y\right]=\sum\limits_{x}x\cdot p_{X\mid Y}\left(x\mid
+y\right).\]
+  \item If \(X\) and \(Y\) are \textbf{jointly distributed continuous} random
+    variables, then
+\[E\left[X\mid Y=y\right]=\int_{-\infty}^{\infty}x\cdot f_{X\mid Y}\left(x\mid
+y\right)\,\mathrm{d}x.\]
+\end{itemize}
+
+\marker{Cond E of a Function}
+\begin{itemize}
+  \item \textbf{Discrete}: \(E[g(X)|Y=y] = \sum_x g(x)p_{X|Y}(x|y)\);
+  \item \textbf{Continuous}: \(E[g(X)|Y=y] = \int_{-\infty}^{\infty}
+    g(x)f_{X|Y}(x|y)\,\mathrm{d}x\).
+\end{itemize}
+Therefore, \(E\left[\sum\limits_{k=1}^{n}X_k | Y=y\right] =
+\sum\limits_{k=1}^{n}E[X_k|Y = y]\).
+
+\marker{Proposition 7.5 Law of Total Variance} 
+\[\operatorname{Var}\left(X\right)=E\left[\operatorname{Var}\left(X\mid
+Y\right)\right]+\operatorname{Var}\left(E\left[X\mid Y\right]\right).\]
+
+\subsection{Moment Generating Functions}
+
+\marker{Definition 7.4} The \textbf{moment generating function} (MGF) of a
+random variable \(X\), denoted by \(M_X\), is defined by
+\begin{itemize}
+  \item \textbf{Discrete}: \(M_X(t) = E[e^{tX}] = \sum_x e^{tx}p_X(x)\);
+  \item \textbf{Continuous}: \(M_X(t) = E[e^{tX}] = \int_{-\infty}^{\infty}
+    e^{tx}f_X(x)\,\mathrm{d}x\).
+\end{itemize}
+
+\marker{Proposition 7.6 Multiplicative Property} If \(X\) and \(Y\) are
+independent random variables, then
+\[M_{X+Y}(t) = M_X(t)M_Y(t).\]
+
+\marker{Proposition 7.7 Uniqueness Property} If \(X\) and \(Y\) are random
+variables with their moment generating functions \(M_X(t)\) and \(M_Y(t)\)
+respectively. Suppose that there exists an \(h < 0\) such that 
+\[M_X(t) = M_Y(t), \quad \forall t \in (-h, h).\]
+Then \(X\) and \(Y\) have the same distribution, i.e. \(F_X = F_Y\) and 
+\(f_X = f_Y\).
+
+
+\subsection{Joint Moment Generating Functions}
+
+For any \(n\) random variables \(X_1, X_2, \ldots, X_n\), the \textbf{joint
+moment generating function}, \(M_{X_1, \cdots, X_n}(t_1, \cdots, t_n)\), is
+defined for all real values of \(t_1, \cdots, t_n\) by
+\[M_{X_1, \cdots, X_n}(t_1, \cdots, t_n) = E\left[\exp({t_1X_1 + \cdots +
+t_nX_n})\right].\]
+The \textbf{individual} moment generating function can be obtained by
+setting the other \(t_j\)'s to zero:
+\[M_{X_i}(t_i) = M_{X_1, \cdots, X_n}(0, \cdots, t_i, \cdots, 0).\]
+
+\marker{Proposition 7.8 Independence of Mean and Variance from Normal Sample} 
+Let \(X_1, X_2, \ldots, X_n\) be independent and identically distributed normal
+random variables with mean \(\mu\) and variance \(\sigma^2\). Then the sample
+mean \(\overline{X}\) and the sample variance \(S^2\) are independent, and
+\(\overline{X}\sim N\left(\mu, \sigma^2/n\right)\) and \((n-1)S^2/\sigma^2
+\sim \chi^2(n-1)\).
+
+\section{Limit Theorems}
+
+\subsection{Introduction}
+
+\subsection{Chebyshev's Inequality and the Weak Law of Large Numbers}
+
+\marker{Proposition 8.1 Markov's Inequality} Let \(X\) be a
+\textbf{nonnegative} random variable. For \(a > 0\), we have 
+\[P(X \geq a)\leq \dfrac{E[X]}{a}.\]
+
+\marker{Proposition 8.2 Chebyshev's Inequality} Let \(X\) be a random variable
+with mean \(\mu\) and variance \(\sigma^2\). For \(a > 0\), we have
+\[P(|X-\mu| \geq a) \leq \dfrac{\sigma^2}{a^2}.\]
+
+\marker{Proposition 8.3} If \(\operatorname{Var}\left(X\right) = 0\), then the
+random variable \(X\) is a constant.
+
+\marker{Theorem 8.1 The Weak Law of Large Numbers} Let \(X_1, X_2, \cdots\) be
+a sequence of independent and identically distributed random variables with
+common mean \(\mu\). Then, for any \(\epsilon > 0\), we have
+\[P\left(\left|\dfrac{X_1+X_2+\cdots+X_n}{n}-\mu\right|\geq
+\epsilon\right)\rightarrow 0\]
+as \(n\rightarrow\infty\).
+
+\subsection{The Central Limit Theorem}
+
+Let \(X_1, X_2, \cdots\) be a sequence of independent and identically
+distributed random variables, each having mean \(\mu\) and variance
+\(\sigma^2\). Then the distribution of 
+\[\dfrac{X_1+X_2+\cdots+X_n-n\mu}{\sigma\sqrt{n}}\]
+tends to the standard norm as \(n \rightarrow \infty\). That is 
+
+\begin{align*}
+&\lim\limits_{n\rightarrow
+\infty}P\left(\dfrac{X_1+X_2+\cdots+X_n-n\mu}{\sigma\sqrt{n}}\right) \\ 
+  =&\dfrac{1}{\sqrt{2\pi}}\int_{x}^{-\infty}\exp(-t^2/2)\ \mathrm{d}t
+\end{align*}
+
+\subsection{The Strong Law of Large Numbers}
+
+\marker{Theorem 8.2 The Strong Law of Large Numbers} Let \(X_1, X_2, \cdots\)
+be a sequence of independent and identically distributed random variables with
+common mean \(\mu\). Then, with probability 1, we have
+\[\lim\limits_{n\rightarrow\infty}\dfrac{X_1+X_2+\cdots+X_n}{n}=\mu.\]
+
+
+\subsection{Other Inequalities}
+
+\marker{Proposition 8.4 One-sided Checbychev's Inequality} Let \(X\) be a
+random variable with mean \(0\) and finite variance \(\sigma^2\). Then, for
+\(a > 0\), we have
+\[P(X \geq a) \leq \dfrac{\sigma^2}{\sigma^2+a^2}.\]
+
+\marker{Proposition 8.5 Jensen's Inequality} If \(g(x)\) is a \textbf{convex}
+function, then 
+\[g(E[X]) \leq E[g(X)]\]
+provided that expectations exist and are finite.
+
+A function is convex if either of the following equivalent conditions hold:
+\begin{enumerate}
+  \item for all \(0 \leq p \leq 1\) and for all \(x_1, x_2 \in R_X\), 
+    \[g(px_1 + (1-p)x_2)\leq pg(x_1) + (1-p)g(x_2).\]
+  \item differentiable function: convex of interval if and only if 
+    \[g(x) \geq g(y) + g'(y)(x-y)\]
+    for all \(x, y\) in the interval.
+  \item A twice differentiable function is convex if and only if its second
+    derivative is nonnegative.
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{multicols*}
+\end{document}
