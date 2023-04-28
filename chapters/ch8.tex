@@ -1,0 +1,50 @@
+\marker{Markov's Inequality} Let \(X\) be a
+\textbf{nonnegative} random variable. For \(a > 0\), we have 
+\[P(X \geq a)\leq \dfrac{E[X]}{a}.\]
+\marker{Chebyshev's Inequality} Let \(X\) be a random variable
+with mean \(\mu\) and variance \(\sigma^2\). For \(a > 0\), we have
+\[P(|X-\mu| \geq a) \leq \dfrac{\sigma^2}{a^2}.\]
+
+\marker{The Weak Law of Large Numbers} Let \(X_1, X_2, \cdots\) be
+a sequence of \textbf{independent} and \textbf{identically} distributed 
+random variables with common mean \(\mu\). Then, for any \(\epsilon > 0\), we
+have
+\[\lim\limits_{n\rightarrow
+    \infty}P\left(\left|\dfrac{X_1+X_2+\cdots+X_n}{n}-\mu\right|\geq
+\epsilon\right) = 0.\]
+
+\marker{Central Limit theorem} Let \(X_1, X_2, \cdots\) be a sequence of
+\textbf{independently} and \textbf{identically} 
+distributed random variables, each having mean \(\mu\) and variance
+\(\sigma^2\). Then the distribution of 
+\[\dfrac{X_1+X_2+\cdots+X_n-n\mu}{\sigma\sqrt{n}}\]
+tends to the standard norm as \(n \rightarrow \infty\). That is 
+\begin{align*}
+&\lim\limits_{n\rightarrow
+\infty}P\left(\dfrac{X_1+X_2+\cdots+X_n-n\mu}{\sigma\sqrt{n}}\right) \\ 
+  =&\dfrac{1}{\sqrt{2\pi}}\int_{x}^{-\infty}\exp(-t^2/2)\ \mathrm{d}t
+\end{align*}
+\marker{The Strong Law of Large Numbers} Let \(X_1, X_2, \cdots\)
+be a sequence of independent and identically distributed random variables with
+common mean \(\mu\). Then, with probability 1, we have
+\[\lim\limits_{n\rightarrow\infty}\dfrac{X_1+X_2+\cdots+X_n}{n}=\mu.\]
+\marker{One-sided Checbychev's Inequality} Let \(X\) be a
+random variable with mean \(0\) and finite variance \(\sigma^2\). Then, for
+\(a > 0\), we have
+\[P(X \geq a) \leq \dfrac{\sigma^2}{\sigma^2+a^2}.\]
+\marker{Jensen's Inequality} If \(g(x)\) is a \textbf{convex}
+function, then 
+\[g(E[X]) \leq E[g(X)]\]
+provided that expectations exist and are finite.
+
+\marker{Convex Functions} A function is convex if either of the following
+equivalent conditions hold:
+\begin{enumerate}
+  \item for all \(0 \leq p \leq 1\) and for all \(x_1, x_2 \in R_X\), 
+    \[g(px_1 + (1-p)x_2)\leq pg(x_1) + (1-p)g(x_2).\]
+  \item differentiable function: convex of interval if and only if 
+    \[g(x) \geq g(y) + g'(y)(x-y)\]
+    for all \(x, y\) in the interval.
+  \item A twice differentiable function is convex if and only if its second
+    derivative is nonnegative.
+\end{enumerate}
