@@ -25,14 +25,18 @@
 
 \renewcommand{\familydefault}{\sfdefault}
 
-\AtBeginEnvironment{equation*}
-{\setlength{\abovedisplayskip}{0pt}\setlength{\belowdisplayskip}{0pt}\color{violet}}
-\AtBeginEnvironment{gather*}
-{\setlength{\abovedisplayskip}{0pt}\setlength{\belowdisplayskip}{0pt}\color{violet}}
-\AtBeginEnvironment{align*}
-{\setlength{\abovedisplayskip}{0pt}\setlength{\belowdisplayskip}{0pt}\color{violet}}
-
+%\AtBeginEnvironment{equation*}
+%{\setlength{\abovedisplayskip}{0pt}\setlength{\belowdisplayskip}{0pt}\color{black}}
+%\AtBeginEnvironment{gather*}
+%{\setlength{\abovedisplayskip}{0pt}\setlength{\belowdisplayskip}{0pt}\color{black}}
+%\AtBeginEnvironment{align*}
+%{\setlength{\abovedisplayskip}{0pt}\setlength{\belowdisplayskip}{0pt}\color{black}}
+%\let\oldeqs\equalion*l
+%\renewenvironment{equation*}[0]{\begin{equation*}}{\end{equation*}}
+%\newenvironment{equation*}{\color{black}\equation*}{\endequation*}
+%\newenvironment{align*}{\color{black}\align*}{\endalign*}
 % make sum, intersection, union, integral bigger
+
 \let\smallsum\sum
 % \renewcommand{\sum}{\displaystyle\smallsum}
 \let\smallprod\prod
@@ -51,7 +55,7 @@
 
 \setlength{\multicolsep}{0pt}
 % \setlength{\columnseprule}{0.2pt}
-% \def\columnseprulecolor{\color{magenta}}
+% \def\columnseprulecolor{\color{black}}
 
 % reduce list spacing
 \usepackage{enumitem}
@@ -62,20 +66,20 @@
 
 % Color tweaks
 
-\newcommand{\marker}[1]{{\color{magenta}{\textbf{#1}}}}
+\newcommand{\marker}[1]{{\color{black}{\textbf{#1}}}}
 
-% set section color to violet 
+% set section color to black 
 \let\oldsection\section
-\renewcommand{\section}[1]{\oldsection{\color{violet}{#1}}}
-\renewcommand{\thesection}{\color{violet}{\arabic{section}}}
+\renewcommand{\section}[1]{\oldsection{\color{black}{#1}}}
+\renewcommand{\thesection}{\color{black}{\arabic{section}}}
 
 \let\oldsubsection\subsection
-\renewcommand{\subsection}[1]{\oldsubsection{\color{purple}{#1}}}
-\renewcommand{\thesubsection}{\color{purple}{\arabic{section}.\arabic{subsection}}}
+\renewcommand{\subsection}[1]{\oldsubsection{\color{black}{#1}}}
+\renewcommand{\thesubsection}{\color{black}{\arabic{section}.\arabic{subsection}}}
 
-% Change color of equation to violet 
+% Change color of equation to black 
 \let\oldinlinemathstart\(
-\renewcommand{\(}{\begingroup\color{violet}\oldinlinemathstart}
+\renewcommand{\(}{\begingroup\color{black}\oldinlinemathstart}
 \let\oldinlinemathend\)
 \renewcommand{\)}{\oldinlinemathend\endgroup}
 
@@ -84,12 +88,12 @@
 \usepackage{enumitem}
 \setlist[itemize]{
   before=\small,
-  label=\tiny\textcolor{magenta}{\textbullet},
+  label=\tiny\textcolor{black}{\textbullet},
   leftmargin=*,labelsep=0.3em
 }
 \setlist[enumerate]{
   before=\small,
-  label=\small\textcolor{magenta}{\arabic*.},
+  label=\small\textcolor{black}{\arabic*.},
   leftmargin=*,labelsep=0.3em
 }
 
